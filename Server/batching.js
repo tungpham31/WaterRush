@@ -14,18 +14,24 @@ module.exports = function (services) {
 			return;
 		}
 
-		var count = 0;
-		for (key in obj) {
-			count++;
-		}
-
-		if (count == 0) {
-			res.writeHead(200, { 'Content-Type': 'application/json' });
-			res.end(JSON.stringify({}));
-			return;
-		}
-
 		responses = {};
+
+		function checkResponses() {
+			for (service in obj) {
+				if (!services[service]) { continue; }
+				for (endpoint in obj[service]) {
+					if (!services[service][endpoint]) { continue; }
+					if (!(service in responses) || !(endpoint in responses[service])) {
+						return;
+					}
+				}
+			}
+
+			res.writeHead(200, { 'Content-Type': 'application/json' });
+			res.end(JSON.stringify(responses));
+		}
+
+		checkResponses();
 
 		for (service in obj) {
 			var reqs = obj[service];
@@ -56,18 +62,7 @@ module.exports = function (services) {
 
 					responses[service][endpoint] = result;
 
-					for (s in obj) {
-						if (!services[s]) { continue; }
-						for (e in obj[s]) {
-							if (!services[s][e]) { continue; }
-							if (!(s in responses) || !(e in responses[s])) {
-								return;
-							}
-						}
-					}
-
-					res.writeHead(200, { 'Content-Type': 'application/json' });
-					res.end(JSON.stringify(responses));
+					checkResponses();
 
 				};
 
