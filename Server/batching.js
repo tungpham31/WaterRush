@@ -8,7 +8,7 @@ module.exports = function (services) {
 	return function (req, res, next) {
 		/**
 		 * This function should parse requests and distribute them to the appropriate services.
-		 * If authentication fails, finish the response in this function and don't call next().
+		 * Batching must always finish the response.
 		 */
 		 res.end();
 	};
