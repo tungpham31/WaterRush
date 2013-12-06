@@ -21,8 +21,8 @@ exports.start = function() {
 			/* will add the receipt, fails if the receipt already exists */	
 			return this;
 		},
-		commit: function() {
-			/* attempts to process transaction (returns true/false) */
+		commit: function(done) {
+			/* attempts to process transaction (calls back with true/false) */
 		},
 	};
 };
