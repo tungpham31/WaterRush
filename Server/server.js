@@ -27,8 +27,10 @@ var config = {
  * Externally visible services
  */
 
+var notifications = require('./services/notifications.js');
+
 var services = {
-	notifications: require('./services/notifications.js'),
+	notifications: notifications.endpoints,
 }
 
 /**
