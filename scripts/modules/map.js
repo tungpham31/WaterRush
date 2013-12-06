@@ -1,4 +1,4 @@
-define([ 'jQuery', 'Backbone' ], function() {
+define([ 'jQuery', 'Backbone', 'game', 'store', 'newsfeed', 'leaderboard' ], function() {
 	Map = Backbone.Model.extend( {
 		initialize : function() {
 
