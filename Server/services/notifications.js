@@ -1,3 +1,5 @@
+var drs = require('../drs.js');
+
 exports.endpoints = {
 	'getNotifications': function (req, user, done) {
 		/**
@@ -8,6 +10,7 @@ exports.endpoints = {
 		 * This function should call done([response]) with an object which will be sent to the client.
 		 * If this routine can fail, the returned object should indicate the reason for failure.
 		 */
+		 done(drs.getNotifications(user.id));
 	},
 };
 
