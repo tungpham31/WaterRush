@@ -1,7 +1,18 @@
 <!DOCTYPE>
 <html>
 <head>
-	<script data-main="scripts/main" src="scripts/require.js"></script>
+	<script data-main="main" src="scripts/require.js"></script>
+	<script>
+		require.config({
+			baseUrl : '/scripts',
+			paths : {
+				'root' : './',
+				'jQuery' : 'jquery-2.0.3',
+				'underscore' : 'underscore',
+				'Backbone' : 'backbone'
+			}
+		});
+	</script>
 </head>
 <body>
 
