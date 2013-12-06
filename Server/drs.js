@@ -15,5 +15,5 @@ exports.getScores = function(userId) {
 };
 
 exports.getNotifications = function(userId) {
-	/* returns highest scores ranked for levelId */
+	/* returns 25 most recent notifications for userId */
 };
