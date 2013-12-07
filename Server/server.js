@@ -28,9 +28,11 @@ var config = {
  */
 
 var notifications = require('./services/notifications.js');
+var storeinfo = require('./services/storeInfo.js');
 
 var services = {
 	notifications: notifications.endpoints,
+	storeinfo: storeinfo.endpoints,
 }
 
 /**
