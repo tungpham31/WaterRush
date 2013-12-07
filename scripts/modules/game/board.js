@@ -1,11 +1,11 @@
 define( function () {
-	board = Backbone.model.extend( {
+	var board = Backbone.model.extend( {
 		initialize : function() {
 
 		}
 	} );
 
-	boardView = Backbone.view.extend( {
+	var boardView = Backbone.view.extend( {
 
 	} );
 

@@ -2,6 +2,16 @@
 <html>
 <head>
 	<script data-main="main" src="scripts/require.js"></script>
+	<script>
+		require.config( {
+			baseUrl : 'scripts',
+			paths : {
+				'$' : 'jquery-2.0.3',
+				'_' : 'underscore',
+				'Backbone' : 'backbone'
+			}
+		} );
+	</script>
 </head>
 <body>
 
