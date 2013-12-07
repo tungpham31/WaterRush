@@ -37,26 +37,28 @@ exports.start = function() {
 		},
 		commit: function() {
 			/* attempts to process transaction (returns true/false) */
-			var currentCount;
-			transaction.foreach( function(trans){
-				switch(trans["type"]){
-					case "coin":
-						currentCount = drs.getCoins(trans["userid"]);
-						newcount = currentCount + trans["transaction"]["quantity"];
-						db.collection('userInventory').findAndModify({
-							{}
-						}
-						break;
-					case "item":
-						break;
-					case "level":
-						break;
-					case "notification":
-						break;
-					case "receipt": 
-						break;
-				}
-			});
+
+			// TODO: FIX IT
+			// var currentCount;
+			// transaction.foreach( function(trans){
+			// 	switch(trans["type"]){
+			// 		case "coin":
+			// 			currentCount = drs.getCoins(trans["userid"]);
+			// 			newcount = currentCount + trans["transaction"]["quantity"];
+			// 			db.collection('userInventory').findAndModify({
+			// 				{}
+			// 			}
+			// 			break;
+			// 		case "item":
+			// 			break;
+			// 		case "level":
+			// 			break;
+			// 		case "notification":
+			// 			break;
+			// 		case "receipt": 
+			// 			break;
+			// 	}
+			// });
 		},
 	};
 };
