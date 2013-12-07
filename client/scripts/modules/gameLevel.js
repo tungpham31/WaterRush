@@ -6,6 +6,6 @@ define([ 'jQuery', 'Backbone', '_', 'brm', 'modules/game/preLevel' ], function()
 	} );
 
 	return {
-		game : gameLevel
+		gameLevel : gameLevel
 	};
 } );
