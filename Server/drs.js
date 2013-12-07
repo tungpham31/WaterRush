@@ -1,19 +1,52 @@
-exports.getCoins = function(userId) {
-	/* returns userId’s coin count */
+var db = require('mongojs').connect(databaseUrl, collections);
+
+exports.getCoins = function(userId, callback) {
+	/* TODO: comment */
+	db.userInventory.findOne({userid: userId},
+		function(err, docs){
+			if (err) { callback(err); } else { callback(null, docs.coins)); }
+		}
+
+	);
 };
 
-exports.getItemCount = function(userId, itemId) {
-	/* returns userId’s quantity for itemId */
+exports.getItemCount = function(userId, itemId, callback) {
+	/* TODO: comment */
+
+	//might need to change to db.collections('userInventory').find({userid: userId})
+	db.userInventory.findOne({userid: userId},function(err,docs){
+		if (err) { 
+			callback(err);
+		} else {
+			callback(null, docs.items[itemId].quantity);
+		}
+	});
 };
 
-exports.getScore = function(userId, levelId) {
-	/* return userId’s high score for levelId */
+exports.getScore = function(userId, levelId, callback) {
+	/* TODO: comment */
+	db.scores.findOne({userid: userId},function(err,docs){ if (err) { callback(err); } else { callback(null, docs.scores[levelId])); }});};
+
+exports.getPlayerScores = function(userId, callback) {
+	/* TODO: comment */
+	db.scores.findOne({userid: userId},function(err,docs){ if (err) { callback(err); } else { callback(null, docs.scores)); }});
 };
 
-exports.getScores = function(userId) {
-	/* returns all of userId’s high scores */
+exports.getNotifications = function(userId, callback) {
+	/* TODO: comment */
+	db.notifications.findOne({userid: userId},function(err,docs){if (err) { callback(err); } else { callback(null, docs.notifications)); }});
 };
 
-exports.getNotifications = function(userId) {
-	/* returns 25 most recent notifications for userId */
-};
+exports.getLives = function(userId, callback){
+	/* TODO: comment */
+	db.userInventory.findOne({userid: userId},
+		function(err, docs){
+			if (err) { callback(err); } else { callback(null, docs.lives)); }
+		}
+
+	);
+}
+
+exports.getLevelScores = function(levelId, callback){
+	//TODO: to be implemented
+}
