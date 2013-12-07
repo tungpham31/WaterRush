@@ -1,4 +1,4 @@
-define(['jquery', 'login'], function ($, login) {
+define(['modules/login'], function (login) {
 
 	function auth (data, done) {
 		var message = {
