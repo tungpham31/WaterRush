@@ -5,13 +5,17 @@ define(['modules/login'], function (login) {
 			token: login.getToken(),
 			data: data,
 		};
-		$.post('/data', JSON.stringify(message))
-			.done(function (data) {
+
+		$.ajax({
+			url: '/data',
+			type: 'POST',
+			data: JSON.stringify(message),
+			contentType: 'application/json; charset=utf-8',
+			dataType: 'json',
+			success: function(data) {
 				done(data);
-			})
-			.fail(function () {
-				// TODO: Error handling
-			});
+			}
+		});
 	}
 	
 	return {
