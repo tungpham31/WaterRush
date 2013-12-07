@@ -2,17 +2,17 @@
  * Created by Timm on 12/6/13.
  */
 define( [ '_', 'Backbone', 'jQuery' ], function () {
-	tile = Backbone.model.extend( {
+	var tile = Backbone.model.extend( {
 		initialize : function() {
 
 		}
 	} );
 
-	tileQueue = Backbone.collection.extend( {
+	var tileQueue = Backbone.collection.extend( {
 
 	} );
 
-	tileView = Backbone.view.extend( {
+	var tileView = Backbone.view.extend( {
 
 	} );
 
