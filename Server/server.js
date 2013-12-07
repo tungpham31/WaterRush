@@ -3,6 +3,7 @@
  */
 
 var connect = require('connect');
+var dispatch = require('dispatch');
 var http = require('http');
 
 /**
@@ -17,6 +18,10 @@ var batching = require('./batching.js');
  */
 
 var config = {
+	file: {
+		cache: 30,
+		path: '../client',
+	},
 	server: {
 		ip: '0.0.0.0',
 		port: 9320,
@@ -41,9 +46,13 @@ var services = {
 
 var server = http.createServer(
 	connect()
-	.use(connect.json())
-	.use(authentication)
-	.use(batching(services))
+	.use(dispatch({
+		'POST /data': connect()
+			.use(connect.json())
+			.use(authentication)
+			.use(batching(services)),
+	}))
+	.use(connect.static(config.file.path, { maxAge: config.file.cache * 1000 }))
 );
 
 /**

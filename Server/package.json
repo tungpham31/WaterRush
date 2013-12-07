@@ -4,7 +4,8 @@
   "description": "Server infrastructure for Water Rush game.",
   "contributors": [ "Henry Merriam <hmerriam@umass.edu>" ],
   "dependencies": {
-    "connect": "2.7.x"
+    "connect": "2.7.x",
+    "dispatch": "0.2.x"
   },
   "engine": "node = 0.10.x",
   "private": true
