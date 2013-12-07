@@ -17,10 +17,6 @@ exports.endpoints = {
 		 */
 		 done(store);
 	},
-};
-
-
-exports.endpoints = {
 	'getCoinPrices': function (req, user, done) {
 		/**
 		 Calculates the price for the number of coins the client sends, and sends back the amount
@@ -28,9 +24,6 @@ exports.endpoints = {
 		 var coinPrice = req * coins[0].price; //Depending on what the client is sending in, might need to change this
 		 done(coinPrice);
 	},
-};
-
-exports.endpoints = {
 	'getPrices': function (req, user, done) {
 		/**
 		Sends back the price for the specific item that client requests
