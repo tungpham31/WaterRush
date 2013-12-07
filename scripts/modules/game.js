@@ -1,4 +1,4 @@
-define([ 'jQuery', 'Backbone', 'inventory' ], function() {
+define([ 'jQuery', 'Backbone', '_' ], function() {
 	gameLevel = Backbone.Model.extend( {
 		initialize : function() {
 
