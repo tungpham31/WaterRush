@@ -38,6 +38,15 @@ define( [ 'modules/store', '_', 'Backbone', '$' ], function ( Store ) {
 	var PowerUp = Item.extend( {
 		defaults : {
 			'maxNum' : undefined
+		},
+		remove : function ( num ) {
+			var old = this.get( 'num' );
+			if( old - num < 0 ) {
+				//Open Store, then either return false or subtract one if the User bought stuff
+			}	else {
+				this.set( { number : old - num } );
+				return true;
+			}
 		}
 	} );
 
