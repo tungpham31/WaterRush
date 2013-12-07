@@ -39,6 +39,7 @@ var services = {
 
 var server = http.createServer(
 	connect()
+	.use(connect.json())
 	.use(authentication)
 	.use(batching(services))
 );

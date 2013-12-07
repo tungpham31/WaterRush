@@ -16,10 +16,10 @@ exports.endpoints = {
 
 var dtm = require('../dtm.js');
 
-exports.addNotification = function (notification) {
+exports.addNotification = function (notification, done) {
 	/**
 	 * This is an internal function. Other components on the server can call it, but it's
 	 * not directly visible to the client.
 	 */
-	return dtm.start().notification(notification).commit();
+	dtm.start().notification(notification).commit(done);
 };

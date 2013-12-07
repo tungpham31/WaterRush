@@ -4,5 +4,6 @@ module.exports = function (req, res, next) {
 	 * The req object should be augmented with information about the authenticated user.
 	 * If authentication fails, finish the response in this function and don't call next().
 	 */
+	req.user = { id: 0 };
 	next();
 };
