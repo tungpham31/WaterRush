@@ -1,24 +1,87 @@
-define( [ '_', 'Backbone', '$' ], function () {
+define( [ 'modules/store', '_', 'Backbone', '$' ], function ( Store ) {
 	var Item = Backbone.Model.extend( {
 		initialize : function ( num ) {
-			alert( num );
-			console.dir( this );
+			this.set( { number : num } );
+		},
+
+		add : function ( num ) {
+			var old = this.get( 'num' ), max = this.get( 'maxNum' );
+			if( max !== undefined && old + num > max ) return false;
+			this.set( { number : old + num } );
+			return true;
+		},
+
+		remove : function ( num ){
+			var old = this.get( 'num' );
+			if( old - num < 0) return false;
+			this.set( { number : old - num } );
+			return true;
+		},
+
+		sync : function (  ) {
+
+		}
+	} );
+
+	var Coin = Item.extend( {
+		defaults : {
+			'maxNum' : undefined
 		}
 	} );
 
 	var Life = Item.extend( {
-
-	} );
-
-	var Coin = Item.extend( {
-
+		defaults : {
+			'maxNum' : undefined
+		}
 	} );
 
 	var PowerUp = Item.extend( {
+		defaults : {
+			'maxNum' : undefined
+		}
+	} );
 
+	var ItemView = Backbone.View.extend( {
+		tagName : 'span',
+		events : {
+			'click' : 'activate'
+		},
+		initialize : function() {
+			this.listenTo( this.model, 'change', this.render );
+		},
+		template : _.template( '<img src="<%= imgSrc %>"><span id="<%= model %>Num"><%= num %></span>' ),
+		render : function() {
+			this.$el.html( this.template( this.model.attributes ) );
+			return this;
+		}
+	} );
+
+	var CoinView = Backbone.View.extend( {
+		id : 'coinsDisplay',
+		imgSrc : 'coin.jpg',
+		model : Coin,
+		activate : function () {
+			//go to the store
+		}
+	} );
+
+	var LifeView = Backbone.View.extend( {
+		id : 'livesDisplay',
+		imgSrc : 'heart.jpg',
+		model : Life,
+		activate : function () {
+			//go to the store
+		}
+	} );
+
+	var PowerUpView = Backbone.View.extend( {
+		id : 'powerUpsDisplay',
+		model : PowerUp
 	} );
 
 	return {
-		item : Item
+		coin : Coin,
+		life : Life,
+		powerUp : PowerUp
 	};
 } );
