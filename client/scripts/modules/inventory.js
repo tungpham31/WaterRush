@@ -65,7 +65,7 @@ define( [ 'modules/store', '_', 'Backbone', '$' ], function ( Store ) {
 		}
 	} );
 
-	var CoinView = Backbone.View.extend( {
+	var CoinView = ItemView.extend( {
 		id : 'coinsDisplay',
 		imgSrc : 'coin.jpg',
 		model : Coin,
@@ -74,7 +74,7 @@ define( [ 'modules/store', '_', 'Backbone', '$' ], function ( Store ) {
 		}
 	} );
 
-	var LifeView = Backbone.View.extend( {
+	var LifeView = ItemView.extend( {
 		id : 'livesDisplay',
 		imgSrc : 'heart.jpg',
 		model : Life,
@@ -83,12 +83,9 @@ define( [ 'modules/store', '_', 'Backbone', '$' ], function ( Store ) {
 		}
 	} );
 
-	var PowerUpView = Backbone.View.extend( {
-		id : 'powerUpsDisplay',
-		model : PowerUp
-	} );
-
 	return {
+		item : Item,
+		itemView : ItemView,
 		coin : Coin,
 		life : Life,
 		powerUp : PowerUp
