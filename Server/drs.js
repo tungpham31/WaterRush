@@ -54,5 +54,17 @@ exports.getLives = function(userId, callback){
 }
 
 exports.getLevelScores = function(levelId, callback){
-	//TODO: to be implemented
+	/* TODO: comment */
+	db.scores.find({}).toArray(
+		function (err, docs) {
+			if (err) {
+				callback(err);
+			}
+			var ret = {};
+			for (var i = 0; i < docs.length; i++){
+				ret[docs[i].userid]= docs[i].scores[levelId];
+			}
+			callback(null, ret);
+		}
+	);
 }
