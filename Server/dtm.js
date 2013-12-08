@@ -42,27 +42,49 @@ exports.start = function() {
 		commit: function() {
 			/* attempts to process transaction (returns true/false) */
 
-			// TODO: FIX IT
-			// var currentCount;
-			// transaction.foreach( function(trans){
-			// 	switch(trans["type"]){
-			// 		case "coin":
-			// 			currentCount = drs.getCoins(trans["userid"]);
-			// 			newcount = currentCount + trans["transaction"]["quantity"];
-			// 			db.collection('userInventory').findAndModify({
-			// 				{}
-			// 			}
-			// 			break;
-			// 		case "item":
-			// 			break;
-			// 		case "level":
-			// 			break;
-			// 		case "notification":
-			// 			break;
-			// 		case "receipt": 
-			// 			break;
-			// 	}
-			// });
+			var currentCount;
+			transaction.foreach( function(trans){
+				switch(trans["type"]){
+					// FIXME: add upsert: true
+					case "coin":
+						db.userInventory.update({ "userid": trans["transaction"]["userid"]}, 
+												{$inc: {"coins": trans["transaction"]["quantity"]}},
+												{upsert: true}
+						);
+						break;
+					case "lives":
+						db.userInventory.update({ "userid": trans["transaction"]["userid"]}, 
+												{$inc: {"lives": trans["transaction"]["quantity"]}},
+												{upsert: true}
+						);
+						break;
+					case "item":
+						db.userInventory.update({"userid": trans["transaction"]["userid"], "items.itemid": trans["transaction"]["itemid"]},
+												{$inc: {"items.$.quantity": trans["transaction"]["quantity"]} },
+												{upsert: true}
+						);
+						break;
+					case "level":
+						//FIXME: 
+						//if (db.scores.find({"userid": trans["transaction"]["userid"], "levelid": trans["transaction"]["levelid"] }) < trans["transaction"]["score"])
+							db.scores.update(	{"userid": trans["transaction"]["userid"]}, 
+												{"scores.levelid": trans["transaction"]["levelid"], 
+													{ $set : { "scores.$.score": trans["transaction"]["score"]}},
+												{upsert: true}
+							);
+						break;
+					case "notification":
+						db.notification.update(
+    						{"userid": trans["transaction"]["userid"]},
+    						{$addToSet: {"notifications": {"notification": trans["transaction"]["notification"]}}},
+    						{upsert: true}
+    					);
+						break;
+					case "receipt":
+						db.receipt.insert({"userid": trans["transaction"]["userid"],"notification": trans["transaction"]["notification"]});
+						break;
+				}
+			});
 		},
 	};
 };
