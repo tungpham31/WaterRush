@@ -68,10 +68,11 @@ exports.start = function() {
 					case "level":
 						//FIXME: 
 						//if (db.scores.find({"userid": trans["transaction"]["userid"], "levelid": trans["transaction"]["levelid"] }) < trans["transaction"]["score"])
-							db.scores.update(	{"userid": trans["transaction"]["userid"]}, 
-												{"scores.levelid": trans["transaction"]["levelid"], 
-													{ $set : { "scores.$.score": trans["transaction"]["score"]}},
-												{upsert: true}
+							db.scores.update(
+								{"userid": trans["transaction"]["userid"]}, 
+								{"scores.levelid": trans["transaction"]["levelid"], 
+									$set : { "scores.$.score": trans["transaction"]["score"]}},
+								{upsert: true}
 							);
 						break;
 					case "notification":
