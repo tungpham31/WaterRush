@@ -5,15 +5,26 @@ exports.endpoints = {
 	'addLevelProgress': function (req, user, done) {
 	/**
 	 * [
-		{"user" : "xxxxx", "lives" : "10" , "coins" : "10", "levelId" : "5", "score" : "1000","freeze" : "10", 
-		"boom" : "5", "reQ" : "10"}
+		{"user" : "xxxxx", "levelId" : "5", "score" : "1000","freeze" : "10", 
+		"boom" : "5", "reQ" : "10", "win" : "true"}
 		];
 	 */
-	 var userId = req.user;
+	 var userId = user.id;
 	 var levelId = req.levelId;
 	 var score = req.score;
-	 var lives = req.lives;
-	 var coins = req.coins + calculateCoinReward(score,levelId);
+
+	 var success = req.win;
+
+	 var lives;
+
+	 	if(success == true){
+	 		lives = 0;
+	 	}
+	 	else{
+	 		lives = -1;
+	 	}
+
+	 var coins = calculateCoinReward(score,levelId);
 
 	 var freezeQ;
 
