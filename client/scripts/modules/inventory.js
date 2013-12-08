@@ -1,12 +1,19 @@
-define( [ 'modules/store', '_', 'Backbone', '$' ], function ( Store ) {
+define( [ 'modules/store', 'modules/communication', '_', 'Backbone', '$' ], function ( store, brm ) {
+	var Store = store.store,
+		send = brm.send();
 	var Item = Backbone.Model.extend( {
-		initialize : function ( num ) {
-			this.set( { number : num } );
+		initialize : function () {
+			//Send query to BRM to get number of item
+			send( {}, function( res ) {
+				var num = res.num;
+				this.set( { number : num } );
+			} );
 		},
 
 		add : function ( num ) {
 			var old = this.get( 'num' ), max = this.get( 'maxNum' );
 			if( max !== undefined && old + num > max ) return false;
+			//Update server
 			this.set( { number : old + num } );
 			return true;
 		},
@@ -14,12 +21,9 @@ define( [ 'modules/store', '_', 'Backbone', '$' ], function ( Store ) {
 		remove : function ( num ){
 			var old = this.get( 'num' );
 			if( old - num < 0) return false;
+			//Update Server
 			this.set( { number : old - num } );
 			return true;
-		},
-
-		sync : function (  ) {
-
 		}
 	} );
 

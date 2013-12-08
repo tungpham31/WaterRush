@@ -1,0 +1,9 @@
+body {
+	margin: 0;
+}
+
+#map {
+	background-image: url('../images/Game_Map.jpg');
+	width: 794px;
+	height: 638px;
+}
