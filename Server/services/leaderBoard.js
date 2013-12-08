@@ -9,7 +9,7 @@ var friendGraph = require('friendGraph.js');
  */
 var getFriendHighScore = function (req, user, done) {
 
-    var friends = friendGraph.getFriends(user); //assuming the structure of friend works here
+    var friends = friendGraph.getFriends(user.id); //assuming the structure of friend works here
 
     /* This creates a list in the form of:
         ret = [{'James': 1239}, {'Mary': 2939}] */
@@ -39,50 +39,51 @@ exports.endpoints = {
 
     /**
      * Returns a list of 5 scores closest to the user’s score for a given level.
+     * req : 
      */
     'getFiveClosestScores': function (req, user, done) {
-        var friendScores = getFriendHighScore(req, user/*, done*/);
-                                                        // do I want to pass done?
-        var index;
-        
-        // Find the index of <user> in the list of <friendScores>
-        friendScores.some(function(entry, i) {
-            if (getOnlyKey(entry) == user) {
-                index = i;
-                return true;
+        getFriendHighScore(req, user.id, function(err, friendScores){
+            var index;
+            
+            // Find the index of <user> in the list of <friendScores>
+            friendScores.some(function(entry, i) {
+                if (getOnlyKey(entry) == user.id) {
+                    index = i;
+                    return true;
+                }
+            });
+
+            /*
+             * Find which 5 (or less) entries to return.
+             */
+            var listStart;
+
+            /* Do not rearrange. Order of if statements are important.*/
+            // [a, b, c, d, user]
+            if (friendScores[index+1] == undefined)
+                listStart = index-4;
+            // [a, b, c, user, d]
+            else if (friendScores[index+2] == undefined)
+                listStart = index-3;
+            // [user, a, b, c, d]
+            else if (friendScores[index-1] == undefined)
+                listStart = index;
+            // [a, user, b, c, d]
+            else if (friendScores[index-2] == undefined)
+                listStart = index-1;
+            // [a, b, user, c, d] Normal case
+            else 
+                listStart = index-2;
+
+            // Assemble the list of 5 or less entries to return
+            var ret = [];
+            for (var i = listStart ; i < listStart+5 ; i++){
+                // chuck any undefined entries i.e. there are less than 5 friends' scores
+                if (friendScores[i] !== undefined)
+                    ret = ret.concat(friendScores[i]);
             }
+            done(ret);
         });
-
-        /*
-         * Find which 5 (or less) entries to return.
-         */
-        var listStart;
-
-        /* Do not rearrange. Order of if statements are important.*/
-        // [a, b, c, d, user]
-        if (friendScores[index+1] == undefined)
-            listStart = index-4;
-        // [a, b, c, user, d]
-        else if (friendScores[index+2] == undefined)
-            listStart = index-3;
-        // [user, a, b, c, d]
-        else if (friendScores[index-1] == undefined)
-            listStart = index;
-        // [a, user, b, c, d]
-        else if (friendScores[index-2] == undefined)
-            listStart = index-1;
-        // [a, b, user, c, d] Normal case
-        else 
-            listStart = index-2;
-
-        // Assemble the list of 5 or less entries to return
-        var ret = [];
-        for (var i = listStart ; i < listStart+5 ; i++){
-            // chuck any undefined entries i.e. there are less than 5 friends' scores
-            if (friendScores[i] !== undefined)
-                ret = ret.concat(friendScores[i]);
-        }
-        done(ret);
     },
 };
 

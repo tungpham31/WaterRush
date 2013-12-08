@@ -1,3 +1,4 @@
+var async = require('async');
 var drs = require('../drs.js');
 var storeInfo = require('storeInfo.js');
 

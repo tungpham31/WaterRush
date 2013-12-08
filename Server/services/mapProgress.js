@@ -13,7 +13,7 @@ exports.endpoints = {
 		 * reason for failure.
 		 */
 
-        drs.getScores(user, function(err, data){
+        drs.getScores(user.id, function(err, data){
             if (err){
                 done(err);
             }
