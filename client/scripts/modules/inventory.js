@@ -16,7 +16,7 @@ define( [ 'modules/store', 'modules/communication', '_', '$', 'Backbone' ], func
 			var old = this.get( 'num' ), max = this.get( 'maxNum' );
 			if( max !== undefined && old + num > max ) return false;
 			//Update server
-			this.set( { number : old + num } );
+			this.set( { num : old + num } );
 			return true;
 		},
 
@@ -24,7 +24,7 @@ define( [ 'modules/store', 'modules/communication', '_', '$', 'Backbone' ], func
 			var old = this.get( 'num' );
 			if( old - num < 0) return false;
 			//Update Server
-			this.set( { number : old - num } );
+			this.set( { num : old - num } );
 			return true;
 		}
 	} );
@@ -61,7 +61,7 @@ define( [ 'modules/store', 'modules/communication', '_', '$', 'Backbone' ], func
 			if( old - num < 0 ) {
 				//Open Store, then either return false or subtract one if the User bought stuff
 			}	else {
-				this.set( { number : old - num } );
+				this.set( { num : old - num } );
 				return true;
 			}
 		}
