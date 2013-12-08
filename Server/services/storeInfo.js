@@ -37,3 +37,10 @@ exports.endpoints = {
 		 }
 	},
 };
+
+/**
+ * Internal function for other server-side services to call. Returns the powerups and price.
+ */
+exports.getItems = function(){
+	return store;
+};
