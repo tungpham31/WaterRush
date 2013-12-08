@@ -21,7 +21,7 @@ exports.addLevelProgress = function (notification, done) {
 	 * This is an internal function. Other components on the server can call it, but it's
 	 * not directly visible to the client.
 	 */
-	dtm.start().addLevelProgress.commit(done);
+	dtm.start().LevelProgress.commit(done);
 };
 
 exports.calculateCoinReward = function(score, levelId){
@@ -31,17 +31,17 @@ exports.calculateCoinReward = function(score, levelId){
 
 exports.calculatePowerupReward = function(levelId){
 	var powerupReward;
-	if (level == 1){
+	if (levelId == 1){
 		powerupReward = [1,0,0];
 	}
-	else if (level == 2){
+	else if (levelId == 2){
 		powerupReward = [0,1,0];
 	}
-	else if (level == 3){
+	else if (levelId == 3){
 		powerupReward = [0,0,1];
 	}
 	else{
-	 	powerupReward = [1,1,1];
+	 	return;
 	}
 
 	return powerupReward;
