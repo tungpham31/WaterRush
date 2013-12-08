@@ -1,7 +1,7 @@
 var store = [
 		{"name" : "freeze", "price" : "10"},
 		{"name" : "boom", "price" : "5"},
-		{"name" : "reQ", "price" : "15"},
+		{"name" : "req", "price" : "15"},
 		{"name" : "lives", "price" : "5"}
 ];
 
@@ -30,7 +30,7 @@ exports.endpoints = {
 		 */
 		 for(var i = 0; i < store.length; i++){ //Depending on what the client is sending in, might need to change this
 		 	var obj = store[i];
-		 	if (req == obj.name){
+		 	if (req.toLowerCase() == obj.name.toLowerCase()){
 		 		var price = obj.price;
 		 		done(price);
 		 	}
