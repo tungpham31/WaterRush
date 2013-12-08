@@ -1,27 +1,56 @@
 var drs = require('../drs.js');
-
-exports.endpoints = {
-	'getLevelReport': function (req, user, done) {
-		/**
-		 * - req is an object passed from the client.
-		 * - user is what's provided by the authentication layer.
-		 * - done is a callback function
-		 * 
-		 * This function should call done([response]) with an object which will be sent to the client.
-		 * If this routine can fail, the returned object should indicate the reason for failure.
-		 */
-		 done();
-	},
-};
-
 var dtm = require('../dtm.js');
 
-exports.addLevelProgress = function (notification, done) {
+exports.endpoints = {
+	'addLevelProgress': function (req, user, done) {
 	/**
-	 * This is an internal function. Other components on the server can call it, but it's
-	 * not directly visible to the client.
+	 * [
+		{"user" : "xxxxx", "lives" : "10" , "coins" : "10", "levelId" : "5", "score" : "1000","freeze" : "10", 
+		"boom" : "5", "reQ" : "10"}
+		];
 	 */
-	dtm.start().LevelProgress.commit(done);
+	 var userId = req.user;
+	 var levelId = req.levelId;
+	 var score = req.score;
+	 var lives = req.lives;
+	 var coins = req.coins + calculateCoinReward(score,levelId);
+
+	 var freezeQ;
+
+	 	if(levelId == 1){
+	 		freezeQ = req.freeze + 1;
+	 	}
+	 	else{
+	 		freezeQ = req.freeze;
+	 	}
+
+	 var boomQ;
+
+		if(levelId == 2){
+	 		boomQ = req.boom + 1;
+	 	}
+	 	else{
+	 		boomQ = req.boom;
+	 	}
+
+	 var reQ;
+
+	 	if(levelId == 3){
+	 		reQ = req.reQ + 1;
+	 	}
+	 	else{
+	 		reQ = req.reQ;
+	 	}
+
+
+	dtm.start().levelProgress(userId,levelId,score)
+		       .item(userId,"freeze",freezeQ)
+		       .item(userId,"boom",boomQ)
+		       .item(userId,"reQ",reQ)
+		       .lives(userId,lives)
+		       .coins(userId,coins)
+		       .commit(done);
+};
 };
 
 exports.calculateCoinReward = function(score, levelId){
@@ -29,20 +58,3 @@ exports.calculateCoinReward = function(score, levelId){
 	return reward;
 };
 
-exports.calculatePowerupReward = function(levelId){
-	var powerupReward;
-	if (levelId == 1){
-		powerupReward = [1,0,0];
-	}
-	else if (levelId == 2){
-		powerupReward = [0,1,0];
-	}
-	else if (levelId == 3){
-		powerupReward = [0,0,1];
-	}
-	else{
-	 	return;
-	}
-
-	return powerupReward;
-};
