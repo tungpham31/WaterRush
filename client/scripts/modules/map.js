@@ -1,15 +1,19 @@
 define( [ 'modules/gameLevel', 'Backbone', '_' ], function( level ) {
 	var Level = level.gameLevel;
 
-	var Map = Backbone.Model.extend( {
-		initialize : function() {
-
-		}
-	} );
-
 	var GameLevels = Backbone.Collection.extend( {
 		model : Level,
 		comparator : 'levelID'
+	} );
+
+	var Map = Backbone.Model.extend( {
+		levels : new GameLevels(),
+		initialize : function() {
+			for ( var i = 1; i < 9; i++ ){
+				this.levels.add( new Level( { levelID : i } ), { at : i } )
+				this.levels.at( i );
+			}
+		}
 	} );
 
 	var MapView = Backbone.View.extend( {
@@ -20,8 +24,6 @@ define( [ 'modules/gameLevel', 'Backbone', '_' ], function( level ) {
 		template : _.template(''),
 		render : function() {
 			this.$el.html( this.template( this.model.attributes ) );
-			console.dir( this.$el );
-			console.dir( this.template );
 			return this;
 		}
 	} );
