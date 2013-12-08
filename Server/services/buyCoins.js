@@ -8,7 +8,7 @@ exports.endpoints = {
 		 * req: the number of coins to be purchased
 		 */
 		drs.getCoins(user.id, function(err, curCoins){
-			dtm.start().coins(user.id, curCoins + req).commit(done);		
-		})
+			dtm.start().coins(user.id, curCoins + req).commit(done);
+		});
 	};
 };
