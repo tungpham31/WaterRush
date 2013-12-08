@@ -1,4 +1,4 @@
-define([ '$', 'Backbone', '_', 'gameLevel', 'store', 'newsfeed', 'leaderboard' ], function() {
+define([ '$', 'Backbone', '_' ], function() {
 	var Login = Backbone.Model.extend( {
 		initialize : function() {
 
