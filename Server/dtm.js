@@ -15,6 +15,10 @@ exports.start = function() {
 			transaction.push({"type": "coin", "transaction": { "userid": userId, "quantity": quantity}});
 			return this;
 		},
+		lives: function(userId, lives) {
+			/* add quatity lives to userId's lives cound */
+			transaction.push({"type": "lives", "transaction": })
+		}
 		item: function(userId, itemId, quantity) {
 			/* add quantity itemIds for userId */
 			transaction.push({"type": "item", "transaction": { "userid": userId, "itemid": itemId, "quantity": quantity }});
