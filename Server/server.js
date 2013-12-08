@@ -32,12 +32,16 @@ var config = {
  * Externally visible services
  */
 
-var notifications = require('./services/notifications.js');
-var storeinfo = require('./services/storeInfo.js');
-
 var services = {
-	notifications: notifications.endpoints,
-	storeinfo: storeinfo.endpoints,
+	buyCoins: require('./services/buyCoins.js').endpoints,
+	friendGraph: require('./services/friendGraph.js').endpoints,
+	inventory: require('./services/inventory.js').endpoints,
+	leaderBoard: require('./services/leaderBoard.js').endpoints,
+	levelReport: require('./services/levelReport.js').endpoints,
+	mapProgress: require('./services/mapProgress.js').endpoints,
+	notifications: require('./services/notifications.js').endpoints,
+	spendCoins: require('./services/spendCoins.js').endpoints,
+	storeInfo: require('./services/storeInfo.js').endpoints,
 }
 
 /**
