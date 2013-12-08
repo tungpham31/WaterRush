@@ -10,5 +10,5 @@ exports.endpoints = {
 		drs.getCoins(user.id, function(err, curCoins){
 			dtm.start().coins(user.id, curCoins + req).commit(done);
 		});
-	};
+	}
 };

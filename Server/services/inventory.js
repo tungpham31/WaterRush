@@ -1,6 +1,6 @@
 var async = require('async');
 var drs = require('../drs.js');
-var storeInfo = require('storeInfo.js');
+var storeInfo = require('./storeInfo.js');
 
 exports.endpoints = {
     /**
@@ -13,7 +13,7 @@ exports.endpoints = {
     'getCoins': function (req, user, done) {
         drs.getCoins(user.id, function(err, result){
             done(result);
-        };
+        });
     },
     /**
      * returns the number of coins the user has.

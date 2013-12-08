@@ -1,6 +1,6 @@
 var drs = require('../drs.js');
 var dtm = require('../dtm.js');
-var storeInfo = require('storeInfo.js');
+var storeInfo = require('./storeInfo.js');
 
 exports.endpoints = {
 	'spendCoins': function (req, user, done) {
@@ -22,10 +22,8 @@ exports.endpoints = {
 		 						   .item(user.id, req.item, req.quantity)
 		 						   .commit(done);	
 		 			}
-		 		})
-		 	}
-
-		 })
+		 		}
+		 	});
 
 	},
 };

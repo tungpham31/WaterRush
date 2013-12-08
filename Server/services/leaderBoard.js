@@ -2,7 +2,7 @@ var drs = require('../drs.js');
 var async = require('async');
 /* frindGraph.js not created yet, may not be implemented. deemed low priority */
 /* Create a fake friends list here and use it if necessary, or have friendGraph fake it */
-var friendGraph = require('friendGraph.js');
+var friendGraph = require('./friendGraph.js');
 
 /**
  * Returns a list of the user’s friends’ highest scores for a level.
@@ -19,7 +19,7 @@ var getFriendHighScore = function (req, user, done) {
         done(result);
     });
 
-},
+};
 
 exports.endpoints = {
     /**
@@ -29,7 +29,7 @@ exports.endpoints = {
     'getGlobalHighScore': function (req, user, done) {
         var allHighScore = drs.getLevelScores(req);
         allHighScore.sort(compare);
-        done(allHighScore.slice(0, 50);
+        done(allHighScore.slice(0, 50));
     },
 
     /**

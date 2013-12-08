@@ -61,7 +61,7 @@ exports.endpoints = {
 		       .lives(userId,lives)
 		       .coins(userId,coins)
 		       .commit(done);
-};
+	},
 };
 
 exports.calculateCoinReward = function(score, levelId){
