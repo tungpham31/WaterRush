@@ -1,6 +1,9 @@
 function onAuthenticated(data) {
   localStorage.userID = data.userID;
-  window.location.href ='/home.html';
+  FB.api('/me', function(response) {
+      if (response.name) localStorage.username = response.name;
+      window.location.href ='/home.html';
+    });
 };
 
 window.fbAsyncInit = function() {
@@ -65,6 +68,7 @@ FB.getLoginStatus(function(response) {
     // and signed request each expire
     var uid = response.authResponse.userID;
     var accessToken = response.authResponse.accessToken;
+    onAuthenticated(response.authResponse);
   } else if (response.status === 'not_authorized') {
     // the user is logged in to Facebook, 
     // but has not authenticated your app
