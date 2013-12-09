@@ -24,11 +24,11 @@
 
 	<!-- TODO: Change angular over to knockout here -->
     <div class="btn-group" style="margin-bottom: 10px;">
-        <button type="button" class="btn btn-default" ng-click="dispGlob()">Global</button> 
-        <button type="button" class="btn btn-default" ng-click="dispFrds()">Friends</button> 
+        <button type="button" class="btn btn-default" data-bind="click: showGlobal(true)">Global</button> 
+        <button type="button" class="btn btn-default" data-bind="click: showGlobal(false)">Friends</button> 
     </div>
 
-    <table class="table table-hover table-bordered" ng-show="isGlobal" style="table-layout: fixed;">
+    <table class="table table-hover table-bordered" data-bind="visible: showGlobal()" style="table-layout: fixed;">
         <thead>
             <tr>
                 <th style="width: 10px;">#</th>
@@ -39,7 +39,7 @@
             </tr>
         </thead>
        
-        <tbody data-bind="foreach: entries">
+        <tbody data-bind="foreach: globalEntries">
             <tr>
                 <td data-bind="text: $index"></td>
                 <td data-bind="text: name"></td>
@@ -52,7 +52,7 @@
         </tbody>
     </table>
 	
-	<table class="table table-hover table-bordered" ng-show="!isGlobal" style="table-layout: fixed;">
+    <table class="table table-hover table-bordered" data-bind="visible: !showGlobal()" style="table-layout: fixed;">
         <thead>
             <tr>
                 <th style="width: 10px;">#</th>
@@ -63,12 +63,12 @@
             </tr>
         </thead>
        
-        <tbody data-bind="foreach: entries">
+        <tbody data-bind="foreach: friendEntries">
             <tr>
                 <td data-bind="text: $index"></td>
                 <td data-bind="text: name"></td>
                 <td data-bind="text: score"></td>
-                <td>3</td>
+                <td>1</td>
                 <td><button type="button" class="btn btn-primary btn-mini" ng-click="sendGift()">Gift</button> <button type="button" class="btn btn-primary btn-mini" onclick="sendMail()">Mail</button></td>
                 
             </tr>

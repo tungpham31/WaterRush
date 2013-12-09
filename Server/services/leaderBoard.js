@@ -47,6 +47,12 @@ exports.endpoints = {
         });
     },
 
+    'getFakeFriendScores': function(req, user, done) {
+        done({
+            'Your Only Friend': 20,
+        });
+    },
+
     /**
      * Returns a list of the user’s friends’ highest scores for a level.
      */
