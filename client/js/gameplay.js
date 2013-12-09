@@ -101,21 +101,20 @@ $(function() {
 				}
 
 				pipe.click(function(){
-				//	console.log("In pipe click, isBoom = " + boomPU.isBoom());
-					if(boomPU.isBoom()){
-						boomPU.boomUsed();
+				if(boomPU.isBoom()){
+					boomPU.boomUsed();
 
-						var newSlot = makeSlot();
+					var newSlot = makeSlot();
 
-						if(this.classList.contains('star')){
-							newSlot.addClass('star');
-						}
-
-						$(this).replaceWith(newSlot);
-
-						tilesPlaced--;
+					if(this.classList.contains('star')){
+						newSlot.addClass('star');
 					}
-				});
+
+					$(this).replaceWith(newSlot);
+
+					tilesPlaced--;
+				}
+			});
 
 				$(this).replaceWith(pipe);
 				pipe.draggable('destroy');
@@ -153,7 +152,7 @@ $("#reQueue").click(
 	function() { 
 		reQPU.reQ(IMAGES, freezePU); 
 	}
-);
+	);
 
 $("#boom").click(
 	function() { boomPU.boomClicked(); }
@@ -172,18 +171,20 @@ $('.slot').replaceWith(function(){
 });
 
 var fps = 30;
+var flowSpeed = 1.0 / 7.0;
 
 function update() {
 	var next = getRight($('#board .row .start').first());
 	var direction = 'e';
 
 	calculateScore();
+	checkWinState();
 
 	while (next.is('.pipe')) {
 		var id = next.attr('data-pipeType');
 		if (direction in CONNECTIONS[id]) {
 			var flow = parseFloat(next.attr('data-flow-' + direction) || 0);
-			flow = Math.min(flow + (1.0 / fps)*(1.0/7.0), 1);
+			flow = Math.min(flow + (1.0 / fps)* flowSpeed, 1);
 
 			if(!freezePU.isFreezing()) {
 				next.attr('data-flow-' + direction, flow);
@@ -216,8 +217,33 @@ function update() {
 	} else {
 		defeat();
 	}
-
 };
+
+function checkWinState() {
+	// If there are still some boom powerups, don't check. 
+	if (boomPU.getNum() > 0) return;
+
+	var next = getRight($('#board .row .start').first());
+	var direction = 'e';
+
+	while (next.is('.pipe')) {
+		var id = next.attr('data-pipeType');
+		if (direction in CONNECTIONS[id]) {
+			direction = CONNECTIONS[id][direction];
+			if (direction == 'n') { next = getTop(next); }
+			else if (direction == 'e') { next = getRight(next); }
+			else if (direction == 's') { next = getBottom(next); }
+			else if (direction == 'w') { next = getLeft(next); }
+		} else {
+			return;
+		}
+	}
+
+	// Check if the flow ends at the end state.
+	if (next.is('.end') && direction == 's') {
+		flowSpeed = 4;
+	};
+}
 
 function victory() {
 	stop();
