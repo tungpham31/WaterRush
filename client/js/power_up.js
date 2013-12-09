@@ -62,6 +62,10 @@ function BoomPowerUp(count) {
 		}	
 	};
 
+	this.getNum = function() {
+		return num;
+	}
+
 	this.boomUsed = function() {
 		boomState = false;
 	}
