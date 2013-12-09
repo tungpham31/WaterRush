@@ -2,6 +2,9 @@
 <html>
 <head>
 	<title>Map</title>
+	<link href="bootstrap/css/bootstrap.min.css" rel="stylesheet" media="screen">
+<link href="css/home.css" rel="stylesheet" media="screen" />
+<link href="store/store.css" rel="stylesheet" media="screen">
 	<script data-main="store" src="scripts/require.js"></script>
 	<script>
 		require.config( {
@@ -16,9 +19,7 @@
 	</script>
 </head>
 <body>
-
-	<h1>Store</h1>
-
+		<!--
 	<table>
 		<tbody data-bind="foreach: entries">
 			<tr>
@@ -27,6 +28,26 @@
 			</tr>
 		</tbody>
 	</table>
+-->
+<div class="modal-header">
+    <h3>Store</h3>
+</div>
+<div class="modal-body" style="text-align: center;">
+<div ng-controller="TabCtrl" style="margin-bottom: 30px;">
+<div class="container" data-bind="foreach: entries">
+    <div class="column">
+        <img src="images/ka-boom-icon.png" height="100" width="100"/><p data-bind="text: name"></p>
+        
+        <button class="btn" style="margin-top:10px; margin-bottom: 30px" ><i class="icon-plus"></i><i data-bind ="text: price"></i>
+        </button>
+    </div>
+  
+</div>
+</div>
+</div>
+<div class="modal-footer">
+    <button class="btn btn-success" ng-click="ok()">OK</button>
+</div>
 
 </body>
 </html>

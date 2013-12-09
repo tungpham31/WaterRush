@@ -11,14 +11,20 @@ html, body {
 }
 
 .column {
-    width:33.33333333%;
+    width:24.82%;
     float:left;
     font-weight: bold;
+ border: 1px solid black;
 }
 
 .column img {
     margin-top: 20px;
     margin-bottom: 30px;
+}
+h3 {
+text-align: center;
+text-weight: bold;
+
 }
 
 .column button {
