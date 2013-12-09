@@ -11,11 +11,16 @@ var getFriendHighScore = function (req, user, done) {
 
     var friends = friendGraph.getFriends(user.id); //assuming the structure of friend works here
 
-    /* This creates a list in the form of:
-        ret = [{'James': 1239}, {'Mary': 2939}] */
+    /* This creates a in the form of:
+        ret = ['James': 1239, 'Mary': 2939] */
     async.map (friends, drs.getPlayerScores, function(err, result){
         result.sort(compare);
-        console.dir(result);
+
+        var ret = {};
+        for (var entry in result){
+            ret[getOnlyKey(entry)] = getOnlyValue(entry);
+        }
+
         done(result);
     });
 

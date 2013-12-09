@@ -4,10 +4,6 @@ var storeInfo = require('./storeInfo.js');
 
 exports.endpoints = {
     /**
-     * - req is an object passed from the client.
-     * - user is what's provided by the authentication layer.
-     * - done is a callback function
-     * 
      * Returns the number of coins the user has.
      */
     'getCoins': function (req, user, done) {
