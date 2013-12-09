@@ -1,0 +1,100 @@
+#queue {
+	float: left;
+	height: 515px;
+	width: 90px;
+	background-color: #8c8;
+}
+
+#guard {
+	height: 257.5px;
+	width: 90px;
+	background-color: #AA0000;
+	opacity: .4;
+	position: relative;
+	z-index: 1;
+}
+
+@font-face {
+  font-family: 'Lobster';
+  font-weight: bolder;
+  src: local('Lobster'), url(../fonts/Lobster.woff) format('woff');
+}
+
+#score {
+	margin-top: 5px;
+	font-family: 'Lobster';
+	font-size: 28px;
+}
+
+#board {
+	float: left;
+	height: 515px;
+	width: 770px;
+	background-color: #caa;
+}
+
+.button-badge{
+	margin-top: 3px;
+}
+
+.control-panel{
+	float: left;
+	width: 100px;
+	margin-left: 5px;
+}
+
+.star:before {
+	content: url('../images/Star.png');
+}
+
+.grid .row {
+	clear: left;
+}
+
+.grid .row .pipe,
+.grid .row .slot,
+.grid .row .start,
+.grid .row .end,
+.grid .row .empty {
+	float: left;
+}
+
+.pipe, .slot, .empty, .start, .end {
+	height: 80px;
+	width: 80px;
+	margin-left: 5px;
+	margin-top: 5px;
+	background-size: 80px 80px;
+}
+
+.start {
+	background-image: url('../images/Start Flow Right.png');
+}
+
+.end {
+	background-image: url('../images/End Flow Down.png');
+}
+
+.end.done {
+	background-image: url('../images/Start Flow Up.png');
+}
+
+.slot.spill {
+	background-image: url('../images/waterbase.png');
+}
+
+.pipe {
+	background-color: #aea;
+}
+
+.slot {
+	background-color: #faa;
+}
+
+.slot.filled {
+	background-color: #ccc;
+}
+
+.slot.over {
+	background-color: #fcc;
+}
