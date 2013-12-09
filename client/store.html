@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Map</title>
+	<script data-main="store" src="scripts/require.js"></script>
+	<script>
+		require.config( {
+			baseUrl : 'scripts',
+			paths : {
+				'$' : 'jquery-2.0.3',
+				'_' : 'underscore',
+				'Backbone' : 'backbone',
+				'root' : '../'
+			}
+		} );
+	</script>
+</head>
+<body>
+
+	<h1>Store</h1>
+
+	<table>
+		<tbody data-bind="foreach: entries">
+			<tr>
+				<td data-bind="text: name"></td>
+				<td data-bind="text: price"></td>
+			</tr>
+		</tbody>
+	</table>
+
+</body>
+</html>
