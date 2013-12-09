@@ -49,6 +49,7 @@
 
 .grid .row {
 	clear: left;
+	margin-left: 0;
 }
 
 .grid .row .pipe,

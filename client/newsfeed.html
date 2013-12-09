@@ -1,48 +1,39 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Newsfeed</title>
+    <link href="bootstrap/css/bootstrap.min.css" rel="stylesheet" media="screen">
+<link href="css/home.css" rel="stylesheet" media="screen" />
+    <script data-main="newsfeed" src="scripts/require.js"></script>
+    <script>
+        require.config( {
+            baseUrl : 'scripts',
+            paths : {
+                '$' : 'jquery-2.0.3',
+                '_' : 'underscore',
+                'Backbone' : 'backbone',
+                'root' : '../'
+            }
+        } );
+    </script>
+</head>
+<body>
+
+    <h1>Newsfeed</h1>
+
 <table class="table table-hover table-bordered" style="table-layout: fixed;">
     <thead>
         <tr>
-            <th style="width: 60px;">Name</th>
-            <th style="width: 200px;">News</th>
-            <th style="width: 45px;">Date</th>
-            <th style="width: 45px;">Action</th>
-        </tr>
+            <th style="width: 10px;">News</th>
     </thead>
-    <tbody>
+   
+    <tbody data-bind="foreach: entries">
         <tr>
-            <td>YOU</td>
-            <td>Reached the top 100 in Overall score!</td>
-            <td>9/5/13</td>
-            <td><button type="button" class="btn btn-primary btn-mini" onclick="openStore()">Store</button></td>
+            <td data-bind="text: $index"></td>
+            <td data-bind="text: notification"></td>
         </tr>
-        <tr>
-            <td>Tony</td>
-            <td>Beat levels 1-50!</td>
-            <td>9/4/13</td>
-            <td><button type="button" class="btn btn-primary btn-mini" onclick="sendGift()">Gift</button></td>
-        </tr>
-        <tr>
-            <td>Amanda</td>
-            <td>Beat your score on level 101!</td>
-            <td>9/2/13</td>
-            <td><button type="button" class="btn btn-primary btn-mini" onclick="playLevel()">Play</button></td>
-        </tr>
-        <tr>
-            <td>YOU</td>
-            <td>Beat levels 101-150!</td>
-            <td>9/1/13</td>
-            <td><button type="button" class="btn btn-primary btn-mini" onclick="openStore()">Store</button></td>
-        </tr>
-        <tr>
-            <td>Joe</td>
-            <td>Reached top 10 global score on level 5!</td>
-            <td>9/1/13</td>
-            <td><button type="button" class="btn btn-primary btn-mini" onclick="sendGift()">Gift</button></td>
-        </tr>
-		<tr>
-            <td>Tom</td>
-            <td>Request Help!</td>
-            <td>9/1/13</td>
-            <td><button type="button" class="btn btn-primary btn-mini" onclick="">Accept</button></td>
-        </tr>
+        
     </tbody>
 </table>
+</body>
+</html>
