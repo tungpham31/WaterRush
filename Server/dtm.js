@@ -44,7 +44,7 @@ exports.start = function() {
 			/* attempts to process transaction (returns true/false) */
 
 			var currentCount;
-			transaction.foreach( function(trans){
+			transaction.forEach( function(trans){
 				switch(trans["type"]){
 					// FIXME: add upsert: true
 					case "coin":

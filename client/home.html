@@ -1,0 +1,66 @@
+<html ng-app="PipesGame">
+<head>
+<script src="js/angular.min.js"></script>
+<script src="js/ui-bootstrap-tpls-0.7.0.min.js"></script>
+<script src="js/jquery.min.js"></script>
+<script src="js/modals.js"></script>
+<script src="js/store.js"></script>
+<script src="js/home.js"></script>
+<link href="bootstrap/css/bootstrap.min.css" rel="stylesheet" media="screen">
+<link href="css/home.css" rel="stylesheet" media="screen" />
+</head>
+<body>
+<div ng-controller="ModalCtrl">
+<div class="navbar navbar-default">  
+  <div class="navbar-inner">
+
+  	<ul class="nav pull-left">
+	  <li><a class="brand">Water Rush</a></li>
+	  <li class="divider-vertical"></li>
+  	  <li><a href="store.html"><i class="icon-plus-sign"></i> <span class="badge badge-info">850</span></a></li>
+  	  <li><a href="store.html"><i class="icon-heart"></i> <span class="badge badge-info">10</span></a></li>
+  	</ul>
+
+	<ul class="nav pull-right">
+	  <!-- Store -->
+	  <li><a href="store.html"><i class="icon-shopping-cart"></i> Store</a></li>
+
+	  <!-- Leaderboard -->
+	  <li>
+	  	<a href="leaderboard.html" data-toggle="dropdown">
+	  		<i class="icon-list-alt"></i> Leaderboard
+	  	</a>
+    </li>
+
+	  <!-- Options -->
+	  <li class="dropdown">
+  	 	<a class="dropdown-toggle" href="#" data-toggle="dropdown">
+  	 		<i class="icon-headphones"></i>
+  	 	</a>
+  	 	<div class="dropdown-menu dropdown-padding" id="menu_options"></div>
+	  </li>
+
+	  <!-- News Feed -->
+	  <li class="dropdown">
+	  	<a class="dropdown-toggle" href="#" data-toggle="dropdown">
+	  		<i class="icon-envelope"></i> 
+	  		<span class="badge badge-warning">6</span>
+	  	</a>
+	    <div class="dropdown-menu dropdown-padding" id="menu_newsfeed"></div>
+	  </li>
+
+	</ul>  
+   </div>
+</div>
+
+<div class="hero-unit">
+	<h1>Water Rush</h1>
+	<p>Below are the available levels</p>
+	<p><button class="btn btn-large btn-primary" type="button" ng-click="PreGame(1)">Level 1</button></p>
+	<p><button class="btn btn-large btn-primary" type="button" ng-click="PreGame(2)">Level 2</button></p>
+	<p><button class="btn btn-large btn-primary" type="button" ng-click="PreGame(3)">Level 3</button></p>
+</div>
+
+</div>
+</body>
+</html>

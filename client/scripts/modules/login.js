@@ -1,9 +1,4 @@
-define([ '$', 'Backbone', '_' ], function() {
-	var Login = Backbone.Model.extend( {
-		initialize : function() {
-
-		}
-	} );
+define([], function() {
 
 	return {
 		/**
@@ -12,7 +7,5 @@ define([ '$', 'Backbone', '_' ], function() {
 		getToken: function () {
 			
 		},
-
-		login : Login
 	};
 } );

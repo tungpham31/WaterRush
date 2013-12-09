@@ -1,0 +1,5 @@
+.nav, .pagination, .carousel a { cursor: pointer; }
+
+.dropdown-padding{
+	padding: 15px;
+}
