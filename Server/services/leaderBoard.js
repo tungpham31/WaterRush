@@ -32,6 +32,16 @@ exports.endpoints = {
         done(allHighScore.slice(0, 50));
     },
 
+    'getFakeScores': function(req, user, done) {
+        done({
+            'Henry': 10,
+            'Gen': 10,
+            'Timm': 8,
+            'Alex': 6,
+            'Aaron': 2,
+        });
+    },
+
     /**
      * Returns a list of the user’s friends’ highest scores for a level.
      */
