@@ -19,6 +19,18 @@ exports.endpoints = {
             done(result);
         });
     },
+
+
+
+    'getFakeCoins': function (req, user, done) {
+        done(133);
+    },
+    'getFakeLives': function (req, user, done) {
+        done(26);
+    },
+
+
+
     /**
      * returns how many of which powerups the user has
      */
