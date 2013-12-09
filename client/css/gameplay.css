@@ -8,8 +8,8 @@
 #guard {
 	height: 257.5px;
 	width: 90px;
-	background-color: #AA0000;
-	opacity: .4;
+	background-color: #000;
+	opacity: 0.5;
 	position: relative;
 	z-index: 1;
 }
@@ -30,7 +30,7 @@
 	float: left;
 	height: 515px;
 	width: 770px;
-	background-color: #caa;
+	background-color: #aca;
 }
 
 .button-badge{
@@ -89,7 +89,7 @@
 }
 
 .slot {
-	background-color: #faa;
+	background-color: #8c8;
 }
 
 .slot.filled {
