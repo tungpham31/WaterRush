@@ -1,10 +1,4 @@
-define([ '$', 'Backbone', '_' ], function() {
-	var Login = Backbone.Model.extend( {
-		initialize : function() {
-
-		}
-	} );
-
+define([ '$' ], function() {
 	return {
 		/**
 		 * Returns a token which the server can use to retrieve and verify the user's identity.
@@ -12,7 +6,5 @@ define([ '$', 'Backbone', '_' ], function() {
 		getToken: function () {
 			
 		},
-
-		login : Login
 	};
 } );
