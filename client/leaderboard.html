@@ -2,6 +2,8 @@
 <html>
 <head>
 	<title>Map</title>
+	<link href="bootstrap/css/bootstrap.min.css" rel="stylesheet" media="screen">
+<link href="css/home.css" rel="stylesheet" media="screen" />
 	<script data-main="leaderboard" src="scripts/require.js"></script>
 	<script>
 		require.config( {
@@ -19,14 +21,60 @@
 
 	<h1>Leaderboard</h1>
 
-	<table>
-		<tbody data-bind="foreach: entries">
-			<tr>
-				<td data-bind="text: name"></td>
-				<td data-bind="text: score"></td>
-			</tr>
-		</tbody>
-	</table>
+
+	<!-- TODO: Change angular over to knockout here -->
+    <div class="btn-group" style="margin-bottom: 10px;">
+        <button type="button" class="btn btn-default" ng-click="dispGlob()">Global</button> 
+        <button type="button" class="btn btn-default" ng-click="dispFrds()">Friends</button> 
+    </div>
+
+    <table class="table table-hover table-bordered" ng-show="isGlobal" style="table-layout: fixed;">
+        <thead>
+            <tr>
+                <th style="width: 10px;">#</th>
+                <th style="width: 60px;">Name</th>
+                <th style="width: 60px;">Score</th>
+                <th style="width: 40px;">Level</th>
+                <th style="width: 80px;">Action</th>
+            </tr>
+        </thead>
+       
+        <tbody data-bind="foreach: entries">
+            <tr>
+                <td data-bind="text: $index"></td>
+                <td data-bind="text: name"></td>
+                <td data-bind="text: score"></td>
+                <td>1</td>
+                <td><button type="button" class="btn btn-primary btn-mini" ng-click="sendGift()">Gift</button> <button type="button" class="btn btn-primary btn-mini" onclick="sendMail()">Mail</button></td>
+                
+            </tr>
+            
+        </tbody>
+    </table>
+	
+	<table class="table table-hover table-bordered" ng-show="!isGlobal" style="table-layout: fixed;">
+        <thead>
+            <tr>
+                <th style="width: 10px;">#</th>
+                <th style="width: 60px;">Name</th>
+                <th style="width: 60px;">Score</th>
+                <th style="width: 40px;">Level</th>
+                <th style="width: 80px;">Action</th>
+            </tr>
+        </thead>
+       
+        <tbody data-bind="foreach: entries">
+            <tr>
+                <td data-bind="text: $index"></td>
+                <td data-bind="text: name"></td>
+                <td data-bind="text: score"></td>
+                <td>3</td>
+                <td><button type="button" class="btn btn-primary btn-mini" ng-click="sendGift()">Gift</button> <button type="button" class="btn btn-primary btn-mini" onclick="sendMail()">Mail</button></td>
+                
+            </tr>
+            
+        </tbody>
+    </table>
 
 </body>
 </html>

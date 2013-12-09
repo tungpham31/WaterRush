@@ -6,6 +6,18 @@
 <script src="js/modals.js"></script>
 <script src="js/store.js"></script>
 <script src="js/home.js"></script>
+	<script data-main="home" src="scripts/require.js"></script>
+	<script>
+		require.config( {
+			baseUrl : 'scripts',
+			paths : {
+				'$' : 'jquery-2.0.3',
+				'_' : 'underscore',
+				'Backbone' : 'backbone',
+				'root' : '../'
+			}
+		} );
+	</script>
 <link href="bootstrap/css/bootstrap.min.css" rel="stylesheet" media="screen">
 <link href="css/home.css" rel="stylesheet" media="screen" />
 </head>
@@ -17,8 +29,8 @@
   	<ul class="nav pull-left">
 	  <li><a class="brand">Water Rush</a></li>
 	  <li class="divider-vertical"></li>
-  	  <li><a href="store.html"><i class="icon-plus-sign"></i> <span class="badge badge-info">850</span></a></li>
-  	  <li><a href="store.html"><i class="icon-heart"></i> <span class="badge badge-info">10</span></a></li>
+  	  <li><a href="store.html"><i class="icon-plus-sign"></i> <span class="badge badge-info" data-bind="text: coins"></span></a></li>
+  	  <li><a href="store.html"><i class="icon-heart"></i> <span class="badge badge-info" data-bind="text: lives"></span></a></li>
   	</ul>
 
 	<ul class="nav pull-right">
