@@ -5,17 +5,22 @@ define([ 'knockout', 'modules/communication' ], function(ko, communication) {
 	function HomeViewModel() {
 		var self = this;
 
-		self.coins = ko.observable(200);
-		self.lives = ko.observable(30);
+		self.coins = ko.observable(0);
+		self.lives = ko.observable(0);
+		self.notifications = ko.observable(0);
 
 		communication.send({
 			'inventory': {
 				'getFakeCoins': {},
 				'getFakeLives': {}
+			},
+			'notifications': {
+				'getFakeNotifications': {}
 			}
 		}, function (result) {
 			self.coins(result.inventory.getFakeCoins);
 			self.lives(result.inventory.getFakeLives);
+			self.notifications(result.notifications.getFakeNotifications.length);
 		});
 	
 	}

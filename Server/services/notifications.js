@@ -12,6 +12,10 @@ exports.endpoints = {
 		 */
 		 done(drs.getNotifications(user.id));
 	},
+	'getFakeNotifications': function(req, user, done) {
+		done([ { notification: 'Frodo dropped something in a nearby mountain!' },
+  			{ notification: 'You now have the high score for level MORDOR!' } ]);
+	}
 };
 
 var dtm = require('../dtm.js');
