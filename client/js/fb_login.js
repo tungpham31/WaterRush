@@ -1,6 +1,6 @@
 function onAuthenticated(data) {
   localStorage.userID = data.userID;
-  window.location.href ='/home';
+  window.location.href ='/home.html';
 };
 
 window.fbAsyncInit = function() {
