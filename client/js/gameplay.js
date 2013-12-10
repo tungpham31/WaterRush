@@ -220,9 +220,6 @@ function update() {
 };
 
 function checkWinState() {
-	// If there are still some boom powerups, don't check. 
-	if (boomPU.getNum() > 0) return;
-
 	var next = getRight($('#board .row .start').first());
 	var direction = 'e';
 
@@ -249,14 +246,14 @@ function victory() {
 	stop();
 	points = Math.max(0, points);
 	alert('You win!. You have got ' + points + ' points');
-	window.location = 'home.html';
+	window.location = 'postgame.html';
 }
 
 function defeat() {
 	stop();
 	points = Math.max(0, points);
 	alert('You lose! You have got ' + points + ' points');
-	window.location = 'home.html';
+	window.location = 'postgame.html';
 }
 
 var updateId = -1;
