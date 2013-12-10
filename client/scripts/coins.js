@@ -27,7 +27,6 @@ define([ 'knockout', 'modules/communication' ], function(ko, communication) {
 		this.price = price;
 
 		this.getCoins = function(){
-			alert ("dude, need more cash");
 			communication.send({
 				'buyCoins': {
 					'buyFakeCoins': self.price
