@@ -1,5 +1,11 @@
-function makePipe (IMAGES, freezePU) {
-	var id = Math.floor(Math.random()*7);
+function makePipe (IMAGES, freezePU, pipeId) {
+	var id;
+	if (pipeId) {
+		// if this is the first pipe, its id may be pre-determined.
+		id = pipeId;
+	} else { 
+		id = Math.floor(Math.random()*7);
+	}
 	var pipe = $('<div class="pipe"></div>')
 	.draggable({ revert: 'invalid' })
 	.attr('data-pipeType', id)
