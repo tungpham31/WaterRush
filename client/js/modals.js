@@ -2,12 +2,7 @@ angular.module('PipesGame', ['ui.bootstrap']);
 var ModalCtrl = function ($scope, $modal, $log) {
   $scope.PreGame = function (gameNum) {
     localStorage.gameNum = gameNum;
-    var modalInstance = $modal.open({
-      templateUrl: 'pregame.html',
-      controller: ModalInstanceCtrl,
-      backdrop: 'static',
-      keyboard: false
-    });
+    window.open('pregame.html', '_self', false);
   };
 
   $scope.PostGame = function () {

@@ -3,19 +3,19 @@
 <head>
 	<title>Map</title>
 	<link href="bootstrap/css/bootstrap.min.css" rel="stylesheet" media="screen">
-<link href="css/home.css" rel="stylesheet" media="screen" />
-	<script data-main="leaderboard" src="scripts/require.js"></script>
-	<script>
-		require.config( {
-			baseUrl : 'scripts',
-			paths : {
-				'$' : 'jquery-2.0.3',
-				'_' : 'underscore',
-				'Backbone' : 'backbone',
-				'root' : '../'
-			}
-		} );
-	</script>
+    <link href="css/home.css" rel="stylesheet" media="screen" />
+    <script data-main="leaderboard" src="scripts/require.js"></script>
+    <script>
+    require.config( {
+     baseUrl : 'scripts',
+     paths : {
+        '$' : 'jquery-2.0.3',
+        '_' : 'underscore',
+        'Backbone' : 'backbone',
+        'root' : '../'
+    }
+} );
+    </script>
 </head>
 <body>
 
@@ -38,7 +38,7 @@
                 <th style="width: 80px;">Action</th>
             </tr>
         </thead>
-       
+        
         <tbody data-bind="foreach: globalEntries">
             <tr>
                 <td data-bind="text: $index"></td>
@@ -51,7 +51,7 @@
             
         </tbody>
     </table>
-	
+    
     <table class="table table-hover table-bordered" data-bind="visible: !showGlobal()" style="table-layout: fixed;">
         <thead>
             <tr>
@@ -62,7 +62,7 @@
                 <th style="width: 80px;">Action</th>
             </tr>
         </thead>
-       
+        
         <tbody data-bind="foreach: friendEntries">
             <tr>
                 <td data-bind="text: $index"></td>
