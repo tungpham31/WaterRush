@@ -9,6 +9,7 @@ var fakePowerups = [
 ];
 
 var fakeLives = 10;
+var fakeCoins = 100;
 
 exports.endpoints = {
     /**
@@ -31,7 +32,7 @@ exports.endpoints = {
 
 
     'getFakeCoins': function (req, user, done) {
-        done(133);
+        done(fakeCoins);
     },
     'getFakeLives': function (req, user, done) {
         done(fakeLives);
