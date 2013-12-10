@@ -4,10 +4,10 @@
 	<title>Pre-Game</title>
 	<link href="bootstrap/css/bootstrap.min.css" rel="stylesheet" media="screen">
 	<link href="css/home.css" rel="stylesheet" media="screen" />
-	<script data-main="leaderboard" src="scripts/require.js"></script>
 	<script src="js/jquery.min.js"></script>
 	<script src="js/jquery-ui.js"></script>
 	<script src="js/pregame.js"></script>
+	<script data-main="leaderboard" src="scripts/require.js"></script>
 	<script>
 	require.config( {
 		baseUrl : 'scripts',
@@ -50,7 +50,7 @@
 
 			<tbody data-bind="foreach: globalEntries">
 				<tr>
-					<td data-bind="text: $index"></td>
+					<td> <span data-bind="text: ($index() + 1)"></span></td>
 					<td data-bind="text: name"></td>
 					<td data-bind="text: score"></td>
 					<td>1</td>
@@ -74,7 +74,7 @@
 
 			<tbody data-bind="foreach: friendEntries">
 				<tr>
-					<td data-bind="text: $index"></td>
+					<td><span data-bind="text: ($index() + 1)"></span></td>
 					<td data-bind="text: name"></td>
 					<td data-bind="text: score"></td>
 					<td>1</td>
