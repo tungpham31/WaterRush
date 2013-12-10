@@ -41,7 +41,7 @@
         
         <tbody data-bind="foreach: globalEntries">
             <tr>
-                <td data-bind="text: $index"></td>
+               <td><span data-bind="text: $index() + 1"></span></td>
                 <td data-bind="text: name"></td>
                 <td data-bind="text: score"></td>
                 <td>1</td>
@@ -65,7 +65,7 @@
         
         <tbody data-bind="foreach: friendEntries">
             <tr>
-                <td data-bind="text: $index"></td>
+                <td><span data-bind="text: $index() + 1"></span></td>
                 <td data-bind="text: name"></td>
                 <td data-bind="text: score"></td>
                 <td>1</td>
