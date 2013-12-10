@@ -2,6 +2,14 @@ var async = require('async');
 var drs = require('../drs.js');
 var storeInfo = require('./storeInfo.js');
 
+var fakePowerups = [
+        {"name" : "freeze", "count" : 3},
+        {"name" : "boom", "count" : 5},
+        {"name" : "req", "count" : 15},
+];
+
+var fakeLives = 10;
+
 exports.endpoints = {
     /**
      * Returns the number of coins the user has.
@@ -26,7 +34,10 @@ exports.endpoints = {
         done(133);
     },
     'getFakeLives': function (req, user, done) {
-        done(26);
+        done(fakeLives);
+    },
+    'getFakePowerups' : function (req, user, done) {
+        done(fakePowerups);
     },
 
 
