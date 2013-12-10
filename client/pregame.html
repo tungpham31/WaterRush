@@ -1,15 +1,94 @@
-<div class="modal-header">
-    <h3>World/Level Goes Here</h3>
-</div>
-<div class="modal-body" style="text-align: center;">
-Previous Score: <h3 style="display:inline;">5600 pts</h3><br />
-<button class="btn btn-large btn-primary" ng-click="playGame()" style="margin-top: 20px;">Play</button>
-<hr />
-<h4>High Scores:</h4>
-<div data-ng-include data-src="'leaderboard.html'"></div>
-</div>
-<div class="modal-footer">
-    
-    <button class="btn" ng-click="buyPowerups()">Buy Powerups</button>
-    <button class="btn btn-warning" ng-click="goHome()">Home</button>
-</div>
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Pre-Game</title>
+	<link href="bootstrap/css/bootstrap.min.css" rel="stylesheet" media="screen">
+	<link href="css/home.css" rel="stylesheet" media="screen" />
+	<script data-main="leaderboard" src="scripts/require.js"></script>
+	<script src="js/jquery.min.js"></script>
+	<script src="js/jquery-ui.js"></script>
+	<script src="js/pregame.js"></script>
+	<script>
+	require.config( {
+		baseUrl : 'scripts',
+		paths : {
+			'$' : 'jquery-2.0.3',
+			'_' : 'underscore',
+			'Backbone' : 'backbone',
+			'root' : '../'
+		}
+	} );
+	</script>
+</head>
+
+<body>
+	<div class="modal-header">
+		<h3>Pre-Game</h3>
+	</div>
+	<div class="modal-body" style="text-align: center;">
+		Previous Score: <h3 style="display:inline;">5600 pts</h3><br />
+		<button class="btn btn-large btn-primary" style="margin-top: 20px;" id="play">Play</button>
+		<hr />
+
+		<h1>Leaderboard</h1>
+		<!-- TODO: Change angular over to knockout here -->
+		<div class="btn-group" style="margin-bottom: 10px;">
+			<button type="button" class="btn btn-default" data-bind="click: showGlobal(true)">Global</button> 
+			<button type="button" class="btn btn-default" data-bind="click: showGlobal(false)">Friends</button> 
+		</div>
+
+		<table class="table table-hover table-bordered" data-bind="visible: showGlobal()" style="table-layout: fixed;">
+			<thead>
+				<tr>
+					<th style="width: 10px;">#</th>
+					<th style="width: 60px;">Name</th>
+					<th style="width: 60px;">Score</th>
+					<th style="width: 40px;">Level</th>
+					<th style="width: 80px;">Action</th>
+				</tr>
+			</thead>
+
+			<tbody data-bind="foreach: globalEntries">
+				<tr>
+					<td data-bind="text: $index"></td>
+					<td data-bind="text: name"></td>
+					<td data-bind="text: score"></td>
+					<td>1</td>
+					<td><button type="button" class="btn btn-primary btn-mini" ng-click="sendGift()">Gift</button> <button type="button" class="btn btn-primary btn-mini" onclick="sendMail()">Mail</button></td>
+
+				</tr>
+
+			</tbody>
+		</table>
+
+		<table class="table table-hover table-bordered" data-bind="visible: !showGlobal()" style="table-layout: fixed;">
+			<thead>
+				<tr>
+					<th style="width: 10px;">#</th>
+					<th style="width: 60px;">Name</th>
+					<th style="width: 60px;">Score</th>
+					<th style="width: 40px;">Level</th>
+					<th style="width: 80px;">Action</th>
+				</tr>
+			</thead>
+
+			<tbody data-bind="foreach: friendEntries">
+				<tr>
+					<td data-bind="text: $index"></td>
+					<td data-bind="text: name"></td>
+					<td data-bind="text: score"></td>
+					<td>1</td>
+					<td><button type="button" class="btn btn-primary btn-mini" ng-click="sendGift()">Gift</button> <button type="button" class="btn btn-primary btn-mini" onclick="sendMail()">Mail</button></td>
+
+				</tr>
+
+			</tbody>
+		</table>
+	</div>
+
+	<div class="modal-footer">
+		<button class="btn" onclick="location.href = '/store.html';">Buy Powerups</button>
+		<button class="btn btn-warning" onclick="location.href = '/home.html';">Home</button>
+	</div>
+</body>
+</html>
