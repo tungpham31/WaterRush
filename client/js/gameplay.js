@@ -9,6 +9,8 @@ $(function() {
 	var baseScore = parseInt($('#parameters').attr('baseScore'));
 	var scoreMultiplier = parseInt($('#parameters').attr('scoreMultiplier'));
 	var totalSquares = parseInt($('#parameters').attr('totalSquares'));
+	var flowSpeed = parseFloat($('#parameters').attr('flowSpeed'));
+	var startPipeId = parseInt($('#parameters').attr('startPipeId'));
 
 	//not level dependent
 	var tilesPlaced = 0;
@@ -17,8 +19,10 @@ $(function() {
 	var reQPU = new ReQPowerUp(3);
 	var boomPU = new BoomPowerUp(3);
 
-	for (var i = 0; i < 6; i++) {
-		var pipe = makePipe(IMAGES, freezePU);
+	// Create the queue.
+	makePipe(IMAGES, freezePU, startPipeId);
+	for (var i = 1; i < 6; i++) {
+		makePipe(IMAGES, freezePU);
 	}
 	displayScore(points);
 
@@ -171,7 +175,6 @@ $('.slot').replaceWith(function(){
 });
 
 var fps = 30;
-var flowSpeed = 1.0 / 7.0;
 
 function update() {
 	var next = getRight($('#board .row .start').first());
