@@ -10,5 +10,13 @@ exports.endpoints = {
 		drs.getCoins(user.id, function(err, curCoins){
 			dtm.start().coins(user.id, curCoins + req).commit(done);
 		});
-	}
+	},
+	'buyFakeCoins': function (req, user, done) {
+		/**
+		 * Adds the specified number of coins to the user
+		 * req: the number of coins to be purchased
+		 */
+		console.log("try buying coins: " + req);
+	},
+
 };

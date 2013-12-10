@@ -6,7 +6,9 @@ var store = [
 ];
 
 var coins = [
-		{"name" : "coins", "price" : "0.2"}
+		{"quantity" : "20", "price" : "2"},
+		{"quantity" : "50", "price" : "4"},
+		{"quantity" : "100", "price" : "8"}
 ];
 
 
@@ -35,6 +37,10 @@ exports.endpoints = {
 		 		done(price);
 		 	}
 		 }
+	},
+
+	'getFakeCoinPrices' : function (req, user, done){
+		done(coins);
 	},
 };
 
