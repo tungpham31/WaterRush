@@ -1,5 +1,6 @@
 urlParam = function(name){
 	var results = new RegExp('[\\?&amp;]' + name + '=([^&amp;#]*)').exec(window.location.href);
+	if (!results) return 0;
 	return results[1] || 0;
 }
 
