@@ -15,9 +15,35 @@ $(function() {
 	//not level dependent
 	var tilesPlaced = 0;
 	var points = baseScore*scoreMultiplier;
-	var freezePU = new FreezePowerUp(3);
-	var reQPU = new ReQPowerUp(3);
-	var boomPU = new BoomPowerUp(3);
+	var freezePU = new FreezePowerUp(0);
+	var reQPU = new ReQPowerUp(0);
+	var boomPU = new BoomPowerUp(0);
+
+
+	require([ 'modules/communication_nojquery'], function(communication) {	
+		communication.send({
+			'inventory': {
+				'getFakePowerups': {}
+			}
+		}, function (result) {
+/* {"inventory": {"getFakePowerups": [ 
+									{"name":"freeze","count":3},
+									{"name":"boom","count":5},
+									{"name":"req","count":15}
+									]
+					}
+	}*/
+			var list = result.inventory.getFakePowerups;
+			for (powerup in list) {
+				if ( list[powerup].name == "freeze"){				
+					freezePU.setCount(list[powerup].count);}
+				else if ( list[powerup].name == "boom"){				
+					boomPU.setCount(list[powerup].count);}
+				else if ( list[powerup].name == "req"){				
+					reQPU.setCount(list[powerup].count);}
+			}
+		});
+	});//*/
 
 	// Create the queue.
 	makePipe(IMAGES, freezePU, startPipeId);

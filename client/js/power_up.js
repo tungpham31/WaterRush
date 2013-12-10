@@ -26,6 +26,12 @@ function FreezePowerUp(count) {
 		$('#nFreeze').text(num);
 	};
 	this.display();
+
+	this.setCount = function(newNum){
+		//ret = server
+		num = newNum;
+		this.display();
+	};
 };
 
 function ReQPowerUp(count) {
@@ -47,6 +53,12 @@ function ReQPowerUp(count) {
 	this.display = function() {
 		$('#nReQ').text(num);
 	};
+
+	this.setCount = function(newNum){
+		num = newNum;
+		this.display();
+	};
+
 	this.display();
 };
 
@@ -76,6 +88,11 @@ function BoomPowerUp(count) {
 
 	this.display = function() {
 		$('#nBoom').text(num);
+	};
+
+	this.setCount = function(newNum){
+		num = newNum;
+		this.display();
 	};
 	this.display();
 };
