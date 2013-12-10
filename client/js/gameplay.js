@@ -246,7 +246,6 @@ function checkWinState() {
 
 function victory() {
 	stop();
-	points = Math.max(0, points);
 	alert('You win!. You have got ' + points + ' points');
 	window.location.pathname = 'postgame.html?score=' + points + '&win=true';
 }
@@ -254,7 +253,6 @@ function victory() {
 function defeat() {
 	stop();
 	points = Math.max(0, points);
-	alert('You lose! You have got ' + points + ' points');
 	window.location.pathname = 'postgame.html?score=' + points + '&win=false';
 }
 
