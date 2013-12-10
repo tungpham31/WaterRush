@@ -12,13 +12,18 @@ $(function() {
 	var flowSpeed = parseFloat($('#parameters').attr('flowSpeed'));
 	var startPipeId = parseInt($('#parameters').attr('startPipeId'));
 
+	var params = $('#parameters'),
+			baseScore = parseInt(params.attr('baseScore') ),
+			scoreMultiplier = parseInt(params.attr('scoreMultiplier') ),
+			totalSquares = parseInt(params.attr('totalSquares') ),
+			levelID = parseInt( params.attr( 'level' ) );
+
 	//not level dependent
 	var tilesPlaced = 0;
 	var points = baseScore*scoreMultiplier;
 	var freezePU = new FreezePowerUp(0);
 	var reQPU = new ReQPowerUp(0);
 	var boomPU = new BoomPowerUp(0);
-
 
 	require([ 'modules/communication_nojquery'], function(communication) {	
 		communication.send({
@@ -50,6 +55,7 @@ $(function() {
 	for (var i = 1; i < 6; i++) {
 		makePipe(IMAGES, freezePU);
 	}
+
 	displayScore(points);
 
 	function calculateScore() {
@@ -65,7 +71,7 @@ $(function() {
 
 	function lengthOfRiverbed() {
 
-		var next = getRight($('#board .row .start').first());
+		var next = getRight( $('#board' ).find( '.row .start' ).first() );
 		var length = 0;
 		var direction = 'e';
 		var currentPoints = 0;
@@ -122,7 +128,7 @@ $(function() {
 		slot.droppable({
 			drop: function( event, ui ) {
 				var index = $(this).index();
-				$('#board .row').each(function() { $(this).children().eq(index).removeClass('over'); });
+				$('#board' ).find( '.row' ).each( function() { $(this).children().eq(index).removeClass('over'); } );
 				$(this).siblings().each(function() { $(this).removeClass('over'); });
 
 				var pipe = ui.draggable;
@@ -160,12 +166,12 @@ $(function() {
 			},
 			over: function( event, ui ) {
 				var index = $(this).index();
-				$('#board .row').each(function() { $(this).children().eq(index).addClass('over'); });
+				$('#board' ).find( '.row' ).each(function() { $(this).children().eq(index).addClass('over'); });
 				$(this).siblings().each(function() { $(this).addClass('over'); });
 			},
 			out: function( event, ui ) {
 				var index = $(this).index();
-				$('#board .row').each(function() { $(this).children().eq(index).removeClass('over'); });
+				$('#board' ).find( '.row' ).each(function() { $(this).children().eq(index).removeClass('over'); });
 				$(this).siblings().each(function() { $(this).removeClass('over'); });
 			}
 		});
@@ -203,7 +209,7 @@ $('.slot').replaceWith(function(){
 var fps = 30;
 
 function update() {
-	var next = getRight($('#board .row .start').first());
+	var next = getRight( $('#board' ).find( '.row .start' ).first() );
 	var direction = 'e';
 
 	calculateScore();
@@ -249,10 +255,7 @@ function update() {
 };
 
 function checkWinState() {
-	// If there are still some boom powerups, don't check. 
-	if (boomPU.getNum() > 0) return;
-
-	var next = getRight($('#board .row .start').first());
+	var next = getRight( $('#board' ).find( '.row .start' ).first() );
 	var direction = 'e';
 
 	while (next.is('.pipe')) {
@@ -276,16 +279,14 @@ function checkWinState() {
 
 function victory() {
 	stop();
-	points = Math.max(0, points);
 	alert('You win!. You have got ' + points + ' points');
-	window.location = 'home.html';
+	window.location.pathname = 'postgame.html?score=' + points + '&win=true';
 }
 
 function defeat() {
 	stop();
 	points = Math.max(0, points);
-	alert('You lose! You have got ' + points + ' points');
-	window.location = 'home.html';
+	window.location.pathname = 'postgame.html?score=' + points + '&win=false';
 }
 
 var updateId = -1;

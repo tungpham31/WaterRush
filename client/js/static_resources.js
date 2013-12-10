@@ -1,6 +1,40 @@
 function initImages() {
 	var images = {
 		0: {
+			base: 'Horizontal.png',
+			flow: {
+				'e': [
+					'Horizontal Flow Right 0.25.png',
+					'Horizontal Flow Right 0.5.png',
+					'Horizontal Flow Right 0.75.png',
+					'Horizontal 1.0.png',
+				],
+				'w': [
+					'Horizontal Flow Left 0.25.png',
+					'Horizontal Flow Left 0.5.png',
+					'Horizontal Flow Left 0.75.png',
+					'Horizontal 1.0.png',
+				],
+			},
+		},
+		1: {
+			base: 'Vertical.png',
+			flow: {
+				'n': [
+					'Vertical Flow Up 0.25.png',
+					'Vertical Flow Up 0.5.png',
+					'Vertical Flow Up 0.75.png',
+					'Vertical 1.0.png',
+				],
+				's': [
+					'Vertical Flow Down 0.25.png',
+					'Vertical Flow Down 0.5.png',
+					'Vertical Flow Down 0.75.png',
+					'Vertical 1.0.png',
+				],
+			},
+		},
+		2: {
 			base: 'Cross.png',
 			flow: {
 				'n': [
@@ -50,40 +84,6 @@ function initImages() {
 				'Cross Both Flow Left 0.5.png',
 				'Cross Both Flow Left 0.75.png',
 				'Cross Both 1.0.png',
-				],
-			},
-		},
-		1: {
-			base: 'Horizontal.png',
-			flow: {
-				'e': [
-				'Horizontal Flow Right 0.25.png',
-				'Horizontal Flow Right 0.5.png',
-				'Horizontal Flow Right 0.75.png',
-				'Horizontal 1.0.png',
-				],
-				'w': [
-				'Horizontal Flow Left 0.25.png',
-				'Horizontal Flow Left 0.5.png',
-				'Horizontal Flow Left 0.75.png',
-				'Horizontal 1.0.png',
-				],
-			},
-		},
-		2: {
-			base: 'Vertical.png',
-			flow: {
-				'n': [
-				'Vertical Flow Up 0.25.png',
-				'Vertical Flow Up 0.5.png',
-				'Vertical Flow Up 0.75.png',
-				'Vertical 1.0.png',
-				],
-				's': [
-				'Vertical Flow Down 0.25.png',
-				'Vertical Flow Down 0.5.png',
-				'Vertical Flow Down 0.75.png',
-				'Vertical 1.0.png',
 				],
 			},
 		},
@@ -162,9 +162,9 @@ function initImages() {
 
 function initConnections() {
 	var connections = {
-		0: { 'n': 'n', 'e': 'e', 's': 's', 'w': 'w' },
-		1: { 'e': 'e', 'w': 'w' },
-		2: { 'n': 'n', 's': 's' },
+		0: { 'e': 'e', 'w': 'w' },
+		1: { 'n': 'n', 's': 's' },
+		2: { 'n': 'n', 'e': 'e', 's': 's', 'w': 'w' },
 		3: { 's': 'e', 'w': 'n' },
 		4: { 'w': 's', 'n': 'e' },
 		5: { 'n': 'w', 'e': 's' },
