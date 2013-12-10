@@ -37,7 +37,7 @@ $(function() {
 
 	function lengthOfRiverbed() {
 
-		var next = getRight($('#board .row .start').first());
+		var next = getRight( $('#board' ).find( '.row .start' ).first() );
 		var length = 0;
 		var direction = 'e';
 		var currentPoints = 0;
@@ -176,7 +176,7 @@ var fps = 30;
 var flowSpeed = 1.0 / 7.0;
 
 function update() {
-	var next = getRight($('#board .row .start').first());
+	var next = getRight( $('#board' ).find( '.row .start' ).first() );
 	var direction = 'e';
 
 	calculateScore();
@@ -222,7 +222,7 @@ function update() {
 };
 
 function checkWinState() {
-	var next = getRight($('#board .row .start').first());
+	var next = getRight( $('#board' ).find( '.row .start' ).first() );
 	var direction = 'e';
 
 	while (next.is('.pipe')) {

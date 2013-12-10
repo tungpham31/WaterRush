@@ -23,7 +23,7 @@ define( [ 'modules/communication', '$' ], function ( comm ) {
 
 		playNext.on( 'click', function () {
 			var level = previous.substr( previous.lastIndexOf( '.' ) - 1, 1 );
-			window.location = previous.substr( 0 , previous.lastIndexOf( '.' ) - 1 ) + ++level + '.html';
+			window.location = previous.substr( 0 , previous.lastIndexOf( '.' ) - 1 ) + ( ++level % 4 ) + '.html';
 		} );
 
 		replayLevel.on( 'click', function () {
