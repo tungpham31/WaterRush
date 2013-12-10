@@ -9,6 +9,7 @@ $(function() {
 	var baseScore = parseInt($('#parameters').attr('baseScore'));
 	var scoreMultiplier = parseInt($('#parameters').attr('scoreMultiplier'));
 	var totalSquares = parseInt($('#parameters').attr('totalSquares'));
+	var flowSpeed = parseFloat($('#parameters').attr('flowSpeed'));
 
 	//not level dependent
 	var tilesPlaced = 0;
@@ -171,7 +172,6 @@ $('.slot').replaceWith(function(){
 });
 
 var fps = 30;
-var flowSpeed = 1.0 / 7.0;
 
 function update() {
 	var next = getRight($('#board .row .start').first());
