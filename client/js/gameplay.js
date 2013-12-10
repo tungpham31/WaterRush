@@ -20,8 +20,9 @@ $(function() {
 	var boomPU = new BoomPowerUp(3);
 
 	for (var i = 0; i < 6; i++) {
-		var pipe = makePipe(IMAGES, freezePU);
+		makePipe(IMAGES, freezePU);
 	}
+
 	displayScore(points);
 
 	function calculateScore() {
@@ -94,7 +95,7 @@ $(function() {
 		slot.droppable({
 			drop: function( event, ui ) {
 				var index = $(this).index();
-				$('#board .row').each(function() { $(this).children().eq(index).removeClass('over'); });
+				$('#board' ).find( '.row' ).each( function() { $(this).children().eq(index).removeClass('over'); } );
 				$(this).siblings().each(function() { $(this).removeClass('over'); });
 
 				var pipe = ui.draggable;
@@ -132,12 +133,12 @@ $(function() {
 			},
 			over: function( event, ui ) {
 				var index = $(this).index();
-				$('#board .row').each(function() { $(this).children().eq(index).addClass('over'); });
+				$('#board' ).find( '.row' ).each(function() { $(this).children().eq(index).addClass('over'); });
 				$(this).siblings().each(function() { $(this).addClass('over'); });
 			},
 			out: function( event, ui ) {
 				var index = $(this).index();
-				$('#board .row').each(function() { $(this).children().eq(index).removeClass('over'); });
+				$('#board' ).find( '.row' ).each(function() { $(this).children().eq(index).removeClass('over'); });
 				$(this).siblings().each(function() { $(this).removeClass('over'); });
 			}
 		});
