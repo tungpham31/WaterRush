@@ -6,9 +6,11 @@ $(function() {
 	CONNECTIONS = initConnections();
 
 	//level dependent
-	var baseScore = parseInt($('#parameters').attr('baseScore'));
-	var scoreMultiplier = parseInt($('#parameters').attr('scoreMultiplier'));
-	var totalSquares = parseInt($('#parameters').attr('totalSquares'));
+	var params = $('#parameters'),
+			baseScore = parseInt(params.attr('baseScore') ),
+			scoreMultiplier = parseInt(params.attr('scoreMultiplier') ),
+			totalSquares = parseInt(params.attr('totalSquares') ),
+			levelID = parseInt( params.attr( 'level' ) );
 
 	//not level dependent
 	var tilesPlaced = 0;
@@ -246,14 +248,14 @@ function victory() {
 	stop();
 	points = Math.max(0, points);
 	alert('You win!. You have got ' + points + ' points');
-	window.location = 'postgame.html';
+	window.location.pathname = 'postgame.html?score=' + points + '&win=true';
 }
 
 function defeat() {
 	stop();
 	points = Math.max(0, points);
 	alert('You lose! You have got ' + points + ' points');
-	window.location = 'postgame.html';
+	window.location.pathname = 'postgame.html?score=' + points + '&win=false';
 }
 
 var updateId = -1;
