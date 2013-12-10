@@ -3,51 +3,77 @@
 <head>
 	<title>Map</title>
 	<link href="bootstrap/css/bootstrap.min.css" rel="stylesheet" media="screen">
-<link href="css/home.css" rel="stylesheet" media="screen" />
-<link href="store/store.css" rel="stylesheet" media="screen">
+	<link href="css/home.css" rel="stylesheet" media="screen" />
+	<link href="store/store.css" rel="stylesheet" media="screen">
+	<script src="js/jquery.min.js"></script>
+	<script src="js/jquery-ui.js"></script>
 	<script data-main="store" src="scripts/require.js"></script>
 	<script>
-		require.config( {
-			baseUrl : 'scripts',
-			paths : {
-				'$' : 'jquery-2.0.3',
-				'_' : 'underscore',
-				'Backbone' : 'backbone',
-				'root' : '../'
-			}
-		} );
+	require.config( {
+		baseUrl : 'scripts',
+		paths : {
+			'$' : 'jquery-2.0.3',
+			'_' : 'underscore',
+			'Backbone' : 'backbone',
+			'root' : '../'
+		}
+	} );
 	</script>
+	<script src="js/store.js"></script>
 </head>
 <body>
-		<!--
-	<table>
-		<tbody data-bind="foreach: entries">
-			<tr>
-				<td data-bind="text: name"></td>
-				<td data-bind="text: price"></td>
-			</tr>
-		</tbody>
-	</table>
--->
-<div class="modal-header">
-    <h3>Store</h3>
-</div>
-<div class="modal-body" style="text-align: center;">
-<div ng-controller="TabCtrl" style="margin-bottom: 30px;">
-<div class="container" data-bind="foreach: entries">
-    <div class="column">
-        <img src="images/ka-boom-icon.png" height="100" width="100"/><p data-bind="text: name"></p>
-        
-        <button class="btn" style="margin-top:10px; margin-bottom: 30px" ><span>&#8353;</span><i data-bind ="text: price"></i>
-        </button>
-    </div>
-  
-</div>
-</div>
-</div>
-<div class="modal-footer">
-    <button class="btn btn-success" onclick="location.href = '/home.html';" ng-click="ok()">Home</button>
-</div>
+	<div class="modal-header">
+		<h3>Store</h3>
+	</div>
+
+	<ul>
+		<li>
+			<a href="javascript:activateTab('1')">Inventory</a>
+		</li>
+		<li>
+			<a href="javascript:activateTab('2')">Coin</a>
+		</li>
+	</ul>
+
+	<div id="tabCtrl">
+		<!-- Inventory -->
+		<div id="page1" style="display: block;">
+			<div class="modal-body" style="text-align: center;">
+				<div ng-controller="TabCtrl" style="margin-bottom: 30px;">
+					<div class="container" data-bind="foreach: inventoryEntries">
+						<div class="column">
+							<img src="images/ka-boom-icon.png" height="100" width="100"/><p data-bind="text: name"></p>
+
+							<button class="btn" style="margin-top:10px; margin-bottom: 30px" ><span>&#8353;</span><i data-bind ="text: price"></i>
+							</button>
+						</div>
+
+					</div>
+				</div>
+			</div>
+		</div>
+
+		<!-- Coins -->
+		<div id="page2" style="display: none;">
+			<div class="modal-body" style="text-align: center;">
+				<div ng-controller="TabCtrl" style="margin-bottom: 30px;">
+					<div class="container" data-bind="foreach: coinEntries">
+						<div class="column">
+							<img src="images/coin.jpg" height="100" width="100"/><p><span data-bind="text: quantity"></span><span> Coins</span></p>
+
+							<button class="btn" style="margin-top:10px; margin-bottom: 30px" data-bind = "click: getCoins"><span>$</span><i data-bind ="text: price"></i>
+							</button>
+						</div>
+
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<div class="modal-footer">
+		<button class="btn btn-success" onclick="location.href = '/home.html';" ng-click="ok()">Home</button>
+	</div>
 
 </body>
 </html>

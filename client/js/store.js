@@ -1,10 +1,20 @@
-angular.module('PipesGame', ["ui.bootstrap"])
-.controller('TabCtrl', function ($scope) {
-    $scope.panes = [
-        { title:"Power-ups + Lives", content:"store/powerups_lives.html" },
-        { title:"Persistent Items", content:"store/persistent_items.html" },
-        { title:"Character Items", content:"store/character_items.html" }
-    ];
+urlParam = function(name){
+	var results = new RegExp('[\\?&amp;]' + name + '=([^&amp;#]*)').exec(window.location.href);
+	return results[1] || 0;
+}
 
-    $scope.navType = 'tabs';
+function activateTab(pageId) {
+	var tabCtrl = document.getElementById('tabCtrl');
+	var pageToActivate = document.getElementById('page' + pageId);
+	for (var i = 0; i < tabCtrl.childNodes.length; i++) {
+		var node = tabCtrl.childNodes[i];
+		if (node.nodeType == 1) { /* Element */
+			node.style.display = (node == pageToActivate) ? 'block' : 'none';
+		}
+	}
+}
+
+$(document).ready(function() {
+	var tabId = urlParam('tabId');
+	if (tabId) activateTab(tabId);
 });
