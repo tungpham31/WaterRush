@@ -195,7 +195,7 @@ $("#boom").click(
 	);
 
 $('#exitLevel').click(function(){
-	window.open('home.html', '_self', false);
+	defeat();
 });
 
 $('.slot').replaceWith(function(){
