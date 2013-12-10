@@ -1,9 +1,5 @@
 function makePipe ( IMAGES, freezePU ) {
-	var id = Math.floor( Math.random()*9 );
-	if ( id > 6 ) {
-		id = id % 2;
-	}
-	console.log( id );
+	var id = Math.floor( Math.random()*16 ) % 7;
 
 	var pipe = $( '<div class="pipe"></div>' )
 		.draggable( { revert: 'invalid' } )
