@@ -29,7 +29,7 @@ define([ 'knockout', 'modules/communication' ], function(ko, communication) {
 		this.getCoins = function(){
 			communication.send({
 				'buyCoins': {
-					'buyFakeCoins': self.price
+					'buyFakeCoins': self.quantity
 				}
 			}, function (result) {
 			});
