@@ -60,3 +60,9 @@ exports.endpoints = {
 
     },
 };
+
+exports.addFakeCoins= function(count, done){
+    fakeCoins = fakeCoins + count;
+    console.log ("purchased " + count + " fake coins, new coin count: " + fakeCoins );
+    done();
+};

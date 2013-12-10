@@ -1,5 +1,6 @@
 var drs = require('../drs.js');
 var dtm = require('../dtm.js');
+var inventory = require ('./inventory.js');
 
 exports.endpoints = {
 	'buyCoins': function (req, user, done) {
@@ -17,6 +18,7 @@ exports.endpoints = {
 		 * req: the number of coins to be purchased
 		 */
 		console.log("try buying coins: " + req);
+		inventory.addFakeCoins(parseInt(req), done);
 	},
 
 };
